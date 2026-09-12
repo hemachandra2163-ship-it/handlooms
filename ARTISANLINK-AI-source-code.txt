@@ -1,0 +1,4837 @@
+================================================================================
+ARTISANLINK-AI — Complete Project Source Code
+================================================================================
+
+This file contains all the application source code for ARTISANLINK-AI.
+shadcn/ui component files (src/components/ui/*) are standard generated
+components and are not included — install them via: npx shadcn@latest add <component>
+
+To set up the project:
+  1. Create a new Vite + React + TypeScript project
+  2. Install TanStack Start, TanStack Router, Tailwind CSS v4, shadcn/ui
+  3. Copy these files into your project
+  4. Run: npm install && npm run dev
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: package.json
+Lines: 92
+--------------------------------------------------------------------------------
+
+{
+  "name": "tanstack_start_ts",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "overrides": {
+    "rolldown": "1.2.1"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-alert-dialog": "^1.1.15",
+    "@radix-ui/react-aspect-ratio": "^1.1.8",
+    "@radix-ui/react-avatar": "^1.1.11",
+    "@radix-ui/react-checkbox": "^1.3.3",
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-context-menu": "^2.2.16",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-hover-card": "^1.1.15",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-menubar": "^1.1.16",
+    "@radix-ui/react-navigation-menu": "^1.2.14",
+    "@radix-ui/react-popover": "^1.1.15",
+    "@radix-ui/react-progress": "^1.1.8",
+    "@radix-ui/react-radio-group": "^1.3.8",
+    "@radix-ui/react-scroll-area": "^1.2.10",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-separator": "^1.1.8",
+    "@radix-ui/react-slider": "^1.3.6",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-switch": "^1.2.6",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@radix-ui/react-toggle": "^1.1.10",
+    "@radix-ui/react-toggle-group": "^1.1.11",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "@tailwindcss/vite": "^4.2.1",
+    "@tanstack/react-query": "^5.101.1",
+    "@tanstack/react-router": "1.170.18",
+    "@tanstack/react-start": "1.168.32",
+    "@tanstack/router-plugin": "1.168.23",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "date-fns": "^4.1.0",
+    "embla-carousel-react": "^8.6.0",
+    "input-otp": "^1.4.2",
+    "lucide-react": "^0.575.0",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.2.0",
+    "react-day-picker": "^9.14.0",
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.71.2",
+    "react-resizable-panels": "^4.6.5",
+    "recharts": "^2.15.4",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.5.0",
+    "tailwindcss": "^4.2.1",
+    "tw-animate-css": "^1.3.4",
+    "vaul": "^1.1.2",
+    "vite-tsconfig-paths": "^6.0.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@lovable.dev/vite-tanstack-config": "^2.20.0",
+    "@types/node": "^22.16.5",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^15.15.0",
+    "nitro": "3.0.260603-beta",
+    "prettier": "^3.7.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.56.1",
+    "vite": "8.1.5"
+  }
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: tsconfig.json
+Lines: 31
+--------------------------------------------------------------------------------
+
+{
+  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts", "eslint.config.js"],
+  "compilerOptions": {
+    "target": "ES2022",
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
+
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": false,
+    "noEmit": true,
+
+    "skipLibCheck": true,
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedSideEffectImports": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: vite.config.ts
+Lines: 16
+--------------------------------------------------------------------------------
+
+// @lovable.dev/vite-tanstack-config already includes the following — do NOT add them manually
+// or the app will break with duplicate plugins:
+//   - TanStack devtools (dev-only, first), tanstackStart, viteReact, tailwindcss, tsConfigPaths,
+//     nitro (build-only using cloudflare as a default target), VITE_* env injection, @ path alias,
+//     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
+// You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
+import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+
+export default defineConfig({
+  tanstackStart: {
+    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
+    // nitro/vite builds from this
+    server: { entry: "server" },
+  },
+});
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: components.json
+Lines: 23
+--------------------------------------------------------------------------------
+
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "css": "src/styles.css",
+    "baseColor": "slate",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "rtl": false,
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "registries": {}
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: README.md
+Lines: 89
+--------------------------------------------------------------------------------
+
+# ARTISANLINK-AI
+
+An AI-powered digital marketplace assistant for traditional artisans and craft makers.
+
+ARTISANLINK-AI turns a mobile photo and a few spoken words into a proper product
+listing — with a clear description, a craft story, a fair price range, a cleaned-up
+photo and a ranked list of buyers who want that kind of craft.
+
+## Features
+
+- **Artisan onboarding** — 3-step registration (language, personal details, craft details).
+- **AI product descriptions** — turns the artisan's own words into a clear, honest listing (title, short description, full description, keywords, category). Never invents history, awards or certifications.
+- **Craft story writer** — a short, warm story built only from the details provided.
+- **Fair price assistant** — cost + time + category margin + bulk logic gives a recommended price range with plain-language reasons.
+- **Photo clean-up** — in-browser brightness / contrast / saturation pass so a simple mobile photo looks closer to a studio shot.
+- **Image compression** — every upload is resized and compressed before saving, so the app works on slow connections.
+- **Buyer matching** — buyers (boutiques, exporters, hotels, restaurants, retail, corporate gifting, government, online sellers) ranked by category, material, price fit and location, each with reasons.
+- **Buyer requests** — accept or decline order enquiries, with quantity, offered price and total order value.
+- **Craft passport** — a printable certificate of handmade origin for each product.
+- **Multilingual** — English, Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi, Bengali. Product text can be translated on demand.
+- **Voice support** — speak instead of typing, and listen to text read aloud, in the chosen language.
+- **Admin view** — verify artisans, approve or hide products, platform totals.
+- **Demo mode** — sample artisan, products, buyers and requests so the app can be demonstrated offline; AI falls back to a clearly labelled sample writer when no AI key is configured.
+- **Responsive** — sidebar on desktop, bottom navigation on mobile, large touch targets and readable type for low-literacy users.
+
+## Technology
+
+- **React 19 + TypeScript**
+- **TanStack Start / TanStack Router** — file-based routing, SSR and server routes
+- **Vite 7** build tooling
+- **Tailwind CSS v4** with a warm terracotta/cream semantic design system (`src/styles.css`)
+- **shadcn/ui** components
+- **Lovable AI Gateway** (`/api/ai` server route) for description, story and translation
+- **Browser Web Speech API** for voice input and read-aloud
+- **Canvas API** for image compression and photo clean-up
+- **localStorage** local-first data layer (shaped like the server collections, so it can be swapped for a hosted database without touching the UI)
+
+## Project structure
+
+```
+src/
+  routes/
+    __root.tsx              app shell, fonts, providers
+    index.tsx               landing page
+    login.tsx  register.tsx auth flows
+    dashboard.tsx           artisan home
+    products.index.tsx      catalogue
+    products.add.tsx        AI-assisted listing flow
+    products.$id.tsx        product detail, translation, quick edit
+    products.$id.passport.tsx craft passport
+    buyers.tsx              buyer matching
+    requests.tsx            buyer requests inbox
+    profile.tsx settings.tsx language.tsx help.tsx admin.tsx
+    api/ai.ts               AI endpoint (description | story | translate)
+  lib/
+    store.tsx               local-first data layer
+    ai.ts                   AI client, fair price, buyer matching
+    demo-data.ts types.ts image.ts
+  components/
+    layout.tsx protected.tsx common.tsx ui/*
+  hooks/use-speech.ts
+```
+
+## Getting started
+
+```bash
+npm install
+npm run dev
+```
+
+Open the app, then log in with a demo account:
+
+- Artisan: `demo@artisanlink.ai`
+- Admin: `admin@artisanlink.ai`
+
+## AI configuration
+
+`/api/ai` uses the `LOVABLE_API_KEY` environment variable (read server-side only,
+never exposed to the browser). When no key is present — or the AI is rate-limited or
+out of credits — the endpoint returns clearly labelled sample text so the app keeps
+working offline and during demos.
+
+## Design principles
+
+- Large text, big buttons, plenty of contrast, icons plus words.
+- No invented facts about a craft or artisan.
+- The artisan always sets the final price.
+- Works offline-first; data stays on the device.
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: public/robots.txt
+Lines: 15
+--------------------------------------------------------------------------------
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: *
+Allow: /
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/styles.css
+Lines: 176
+--------------------------------------------------------------------------------
+
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * ARTISANLINK-AI design system.
+ * Warm earthy palette: terracotta, brown, cream, soft green.
+ * All colors are oklch semantic tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-sans: "Mulish", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.9rem;
+  --background: oklch(0.973 0.017 85);
+  --foreground: oklch(0.27 0.035 45);
+  --card: oklch(0.995 0.008 90);
+  --card-foreground: oklch(0.27 0.035 45);
+  --popover: oklch(0.995 0.008 90);
+  --popover-foreground: oklch(0.27 0.035 45);
+  --primary: oklch(0.56 0.15 40);
+  --primary-foreground: oklch(0.985 0.012 85);
+  --secondary: oklch(0.93 0.03 80);
+  --secondary-foreground: oklch(0.33 0.05 45);
+  --muted: oklch(0.94 0.022 82);
+  --muted-foreground: oklch(0.49 0.033 55);
+  --accent: oklch(0.62 0.09 150);
+  --accent-foreground: oklch(0.985 0.012 85);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.985 0.012 85);
+  --success: oklch(0.6 0.11 150);
+  --success-foreground: oklch(0.985 0.012 85);
+  --warning: oklch(0.76 0.14 75);
+  --warning-foreground: oklch(0.27 0.035 45);
+  --border: oklch(0.88 0.026 80);
+  --input: oklch(0.88 0.026 80);
+  --ring: oklch(0.56 0.15 40);
+  --chart-1: oklch(0.56 0.15 40);
+  --chart-2: oklch(0.62 0.09 150);
+  --chart-3: oklch(0.76 0.14 75);
+  --chart-4: oklch(0.45 0.06 45);
+  --chart-5: oklch(0.68 0.1 30);
+  --sidebar: oklch(0.96 0.021 82);
+  --sidebar-foreground: oklch(0.27 0.035 45);
+  --sidebar-primary: oklch(0.56 0.15 40);
+  --sidebar-primary-foreground: oklch(0.985 0.012 85);
+  --sidebar-accent: oklch(0.91 0.032 80);
+  --sidebar-accent-foreground: oklch(0.3 0.04 45);
+  --sidebar-border: oklch(0.87 0.028 80);
+  --sidebar-ring: oklch(0.56 0.15 40);
+  --gradient-hero: linear-gradient(140deg, oklch(0.96 0.03 85) 0%, oklch(0.91 0.05 60) 55%, oklch(0.88 0.05 150) 100%);
+  --gradient-primary: linear-gradient(120deg, oklch(0.56 0.15 40), oklch(0.64 0.13 55));
+  --shadow-soft: 0 10px 30px -12px oklch(0.35 0.06 45 / 0.28);
+  --shadow-card: 0 4px 16px -6px oklch(0.35 0.06 45 / 0.18);
+}
+
+.dark {
+  --background: oklch(0.21 0.022 50);
+  --foreground: oklch(0.95 0.015 85);
+  --card: oklch(0.26 0.026 48);
+  --card-foreground: oklch(0.95 0.015 85);
+  --popover: oklch(0.26 0.026 48);
+  --popover-foreground: oklch(0.95 0.015 85);
+  --primary: oklch(0.67 0.14 45);
+  --primary-foreground: oklch(0.2 0.02 50);
+  --secondary: oklch(0.32 0.03 50);
+  --secondary-foreground: oklch(0.95 0.015 85);
+  --muted: oklch(0.32 0.03 50);
+  --muted-foreground: oklch(0.75 0.025 70);
+  --accent: oklch(0.65 0.1 150);
+  --accent-foreground: oklch(0.2 0.02 50);
+  --destructive: oklch(0.65 0.18 27);
+  --destructive-foreground: oklch(0.98 0.01 85);
+  --success: oklch(0.66 0.11 150);
+  --success-foreground: oklch(0.2 0.02 50);
+  --warning: oklch(0.78 0.13 75);
+  --warning-foreground: oklch(0.2 0.02 50);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.67 0.14 45);
+  --sidebar: oklch(0.25 0.025 48);
+  --sidebar-foreground: oklch(0.95 0.015 85);
+  --sidebar-primary: oklch(0.67 0.14 45);
+  --sidebar-primary-foreground: oklch(0.2 0.02 50);
+  --sidebar-accent: oklch(0.32 0.03 50);
+  --sidebar-accent-foreground: oklch(0.95 0.015 85);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.67 0.14 45);
+  --gradient-hero: linear-gradient(140deg, oklch(0.26 0.03 50), oklch(0.3 0.05 40));
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1.02rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility bg-hero-gradient {
+  background-image: var(--gradient-hero);
+}
+
+@utility bg-primary-gradient {
+  background-image: var(--gradient-primary);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/router.tsx
+Lines: 17
+--------------------------------------------------------------------------------
+
+import { QueryClient } from "@tanstack/react-query";
+import { createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
+
+export const getRouter = () => {
+  const queryClient = new QueryClient();
+
+  const router = createRouter({
+    routeTree,
+    context: { queryClient },
+    scrollRestoration: true,
+    defaultPreloadStaleTime: 0,
+  });
+
+  return router;
+};
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/server.ts
+Lines: 62
+--------------------------------------------------------------------------------
+
+import "./lib/error-capture";
+
+import { consumeLastCapturedError } from "./lib/error-capture";
+import { renderErrorPage } from "./lib/error-page";
+
+type ServerEntry = {
+  fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
+};
+
+let serverEntryPromise: Promise<ServerEntry> | undefined;
+
+async function getServerEntry(): Promise<ServerEntry> {
+  if (!serverEntryPromise) {
+    serverEntryPromise = import("@tanstack/react-start/server-entry").then(
+      (m) => (m.default ?? m) as ServerEntry,
+    );
+  }
+  return serverEntryPromise;
+}
+
+// h3 swallows in-handler throws into a normal 500 Response with body
+// {"unhandled":true,"message":"HTTPError"} — try/catch alone never fires for those.
+async function normalizeCatastrophicSsrResponse(response: Response): Promise<Response> {
+  if (response.status < 500) return response;
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!contentType.includes("application/json")) return response;
+
+  const body = await response.clone().text();
+  if (!isH3SwallowedErrorBody(body)) return response;
+
+  console.error(consumeLastCapturedError() ?? new Error(`h3 swallowed SSR error: ${body}`));
+  return new Response(renderErrorPage(), {
+    status: 500,
+    headers: { "content-type": "text/html; charset=utf-8" },
+  });
+}
+
+function isH3SwallowedErrorBody(body: string): boolean {
+  try {
+    const payload = JSON.parse(body) as { unhandled?: unknown; message?: unknown };
+    return payload.unhandled === true && payload.message === "HTTPError";
+  } catch {
+    return false;
+  }
+}
+
+export default {
+  async fetch(request: Request, env: unknown, ctx: unknown) {
+    try {
+      const handler = await getServerEntry();
+      const response = await handler.fetch(request, env, ctx);
+      return await normalizeCatastrophicSsrResponse(response);
+    } catch (error) {
+      console.error(error);
+      return new Response(renderErrorPage(), {
+        status: 500,
+        headers: { "content-type": "text/html; charset=utf-8" },
+      });
+    }
+  },
+};
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/start.ts
+Lines: 30
+--------------------------------------------------------------------------------
+
+import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
+
+import { renderErrorPage } from "./lib/error-page";
+
+const errorMiddleware = createMiddleware().server(async ({ next }) => {
+  try {
+    return await next();
+  } catch (error) {
+    if (error != null && typeof error === "object" && "statusCode" in error) {
+      throw error;
+    }
+    console.error(error);
+    return new Response(renderErrorPage(), {
+      status: 500,
+      headers: { "content-type": "text/html; charset=utf-8" },
+    });
+  }
+});
+
+// Start installs this automatically when src/start.ts is absent; defining the
+// file opts out, so re-add it explicitly to keep server functions protected
+// from cross-site requests.
+const csrfMiddleware = createCsrfMiddleware({
+  filter: (ctx) => ctx.handlerType === "serverFn",
+});
+
+export const startInstance = createStart(() => ({
+  requestMiddleware: [errorMiddleware, csrfMiddleware],
+}));
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/lib/types.ts
+Lines: 102
+--------------------------------------------------------------------------------
+
+export type Language = "en" | "hi" | "te" | "ta" | "kn" | "ml" | "mr" | "bn";
+
+export const LANGUAGES: { code: Language; label: string; native: string }[] = [
+  { code: "en", label: "English", native: "English" },
+  { code: "hi", label: "Hindi", native: "हिन्दी" },
+  { code: "te", label: "Telugu", native: "తెలుగు" },
+  { code: "ta", label: "Tamil", native: "தமிழ்" },
+  { code: "kn", label: "Kannada", native: "ಕನ್ನಡ" },
+  { code: "ml", label: "Malayalam", native: "മലയാളം" },
+  { code: "mr", label: "Marathi", native: "मराठी" },
+  { code: "bn", label: "Bengali", native: "বাংলা" },
+];
+
+export const SPEECH_LOCALE: Record<Language, string> = {
+  en: "en-IN",
+  hi: "hi-IN",
+  te: "te-IN",
+  ta: "ta-IN",
+  kn: "kn-IN",
+  ml: "ml-IN",
+  mr: "mr-IN",
+  bn: "bn-IN",
+};
+
+export interface Artisan {
+  id: string;
+  name: string;
+  email: string;
+  mobile: string;
+  state: string;
+  district: string;
+  village: string;
+  craftType: string;
+  language: Language;
+  experience: number;
+  photo?: string;
+  craftStory?: string;
+  contactPreference: "call" | "whatsapp" | "email";
+  role: "artisan" | "admin";
+  verified: boolean;
+}
+
+export interface Product {
+  id: string;
+  artisanId: string;
+  name: string;
+  shortDescription: string;
+  description: string;
+  originalDescription: string;
+  category: string;
+  material: string;
+  craftType: string;
+  technique: string;
+  location: string;
+  originalImage?: string;
+  enhancedImage?: string;
+  priceMin: number;
+  priceMax: number;
+  price: number;
+  availability: "available" | "made-to-order" | "sold-out";
+  craftStory: string;
+  keywords: string[];
+  published: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Buyer {
+  id: string;
+  name: string;
+  category: string;
+  location: string;
+  interests: string[];
+  materials: string[];
+  quantity: string;
+  budgetMin: number;
+  budgetMax: number;
+  contact: string;
+  about: string;
+}
+
+export interface BuyerRequest {
+  id: string;
+  buyerId: string;
+  artisanId: string;
+  productId: string;
+  quantity: number;
+  expectedPrice: number;
+  deliveryLocation: string;
+  message: string;
+  status: "new" | "accepted" | "rejected" | "pending";
+  createdAt: string;
+}
+
+export interface AppNotification {
+  id: string;
+  title: string;
+  body: string;
+  read: boolean;
+  createdAt: string;
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/lib/store.tsx
+Lines: 172
+--------------------------------------------------------------------------------
+
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
+import type { Artisan, AppNotification, Buyer, BuyerRequest, Language, Product } from "./types";
+import { DEMO_ADMIN, DEMO_ARTISAN, DEMO_BUYERS, DEMO_PRODUCTS, DEMO_REQUESTS } from "./demo-data";
+
+/**
+ * Local-first data layer.
+ * Everything is persisted in the browser so the prototype keeps working
+ * without internet. The shape mirrors the server collections
+ * (users, products, buyers, buyer_requests, notifications) so it can be
+ * swapped for a hosted database later without touching the UI.
+ */
+
+const KEY = "artisanlink.state.v1";
+
+interface State {
+  artisans: Artisan[];
+  products: Product[];
+  buyers: Buyer[];
+  requests: BuyerRequest[];
+  notifications: AppNotification[];
+  currentUserId: string | null;
+  language: Language;
+  demoMode: boolean;
+}
+
+const initialState: State = {
+  artisans: [DEMO_ARTISAN, DEMO_ADMIN],
+  products: DEMO_PRODUCTS,
+  buyers: DEMO_BUYERS,
+  requests: DEMO_REQUESTS,
+  notifications: [
+    {
+      id: "n1",
+      title: "New buyer request",
+      body: "Kalakriti Handicraft Boutique wants 120 bamboo baskets.",
+      read: false,
+      createdAt: new Date().toISOString(),
+    },
+    {
+      id: "n2",
+      title: "New buyer match",
+      body: "EarthCraft Exports matches your bamboo products.",
+      read: false,
+      createdAt: new Date().toISOString(),
+    },
+  ],
+  currentUserId: null,
+  language: "en",
+  demoMode: true,
+};
+
+interface StoreValue extends State {
+  user: Artisan | null;
+  login: (email: string) => Artisan | null;
+  register: (data: Omit<Artisan, "id" | "role" | "verified">) => Artisan;
+  logout: () => void;
+  setLanguage: (l: Language) => void;
+  setDemoMode: (v: boolean) => void;
+  updateArtisan: (id: string, patch: Partial<Artisan>) => void;
+  addProduct: (p: Product) => void;
+  updateProduct: (id: string, patch: Partial<Product>) => void;
+  deleteProduct: (id: string) => void;
+  updateRequest: (id: string, patch: Partial<BuyerRequest>) => void;
+  addRequest: (r: BuyerRequest) => void;
+  pushNotification: (title: string, body: string) => void;
+  markAllRead: () => void;
+  resetDemoData: () => void;
+}
+
+const StoreContext = createContext<StoreValue | null>(null);
+
+export function uid(prefix: string) {
+  return `${prefix}_${Math.random().toString(36).slice(2, 9)}`;
+}
+
+export function StoreProvider({ children }: { children: ReactNode }) {
+  const [state, setState] = useState<State>(initialState);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) setState({ ...initialState, ...(JSON.parse(raw) as State) });
+    } catch {
+      /* corrupted local data – fall back to demo data */
+    }
+    setHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    try {
+      localStorage.setItem(KEY, JSON.stringify(state));
+    } catch {
+      /* storage full or blocked – app keeps working in memory */
+    }
+  }, [state, hydrated]);
+
+  const patch = useCallback((fn: (s: State) => State) => setState((s) => fn(s)), []);
+
+  const value = useMemo<StoreValue>(() => {
+    const user = state.artisans.find((a) => a.id === state.currentUserId) ?? null;
+    return {
+      ...state,
+      user,
+      login: (email) => {
+        const found =
+          state.artisans.find((a) => a.email.toLowerCase() === email.trim().toLowerCase()) ?? null;
+        if (found) patch((s) => ({ ...s, currentUserId: found.id, language: found.language }));
+        return found;
+      },
+      register: (data) => {
+        const artisan: Artisan = { ...data, id: uid("art"), role: "artisan", verified: false };
+        patch((s) => ({
+          ...s,
+          artisans: [...s.artisans, artisan],
+          currentUserId: artisan.id,
+          language: artisan.language,
+        }));
+        return artisan;
+      },
+      logout: () => patch((s) => ({ ...s, currentUserId: null })),
+      setLanguage: (l) => patch((s) => ({ ...s, language: l })),
+      setDemoMode: (v) => patch((s) => ({ ...s, demoMode: v })),
+      updateArtisan: (id, p) =>
+        patch((s) => ({
+          ...s,
+          artisans: s.artisans.map((a) => (a.id === id ? { ...a, ...p } : a)),
+        })),
+      addProduct: (p) => patch((s) => ({ ...s, products: [p, ...s.products] })),
+      updateProduct: (id, p) =>
+        patch((s) => ({
+          ...s,
+          products: s.products.map((x) =>
+            x.id === id ? { ...x, ...p, updatedAt: new Date().toISOString() } : x,
+          ),
+        })),
+      deleteProduct: (id) => patch((s) => ({ ...s, products: s.products.filter((x) => x.id !== id) })),
+      updateRequest: (id, p) =>
+        patch((s) => ({ ...s, requests: s.requests.map((r) => (r.id === id ? { ...r, ...p } : r)) })),
+      addRequest: (r) => patch((s) => ({ ...s, requests: [r, ...s.requests] })),
+      pushNotification: (title, body) =>
+        patch((s) => ({
+          ...s,
+          notifications: [
+            { id: uid("n"), title, body, read: false, createdAt: new Date().toISOString() },
+            ...s.notifications,
+          ],
+        })),
+      markAllRead: () =>
+        patch((s) => ({ ...s, notifications: s.notifications.map((n) => ({ ...n, read: true })) })),
+      resetDemoData: () => setState({ ...initialState, currentUserId: state.currentUserId }),
+    };
+  }, [state, patch]);
+
+  return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
+}
+
+export function useStore() {
+  const ctx = useContext(StoreContext);
+  if (!ctx) throw new Error("useStore must be used inside StoreProvider");
+  return ctx;
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/lib/ai.ts
+Lines: 114
+--------------------------------------------------------------------------------
+
+import type { Buyer, Product } from "./types";
+
+export interface DescriptionResult {
+  title: string;
+  shortDescription: string;
+  description: string;
+  keywords: string[];
+  category: string;
+  demo?: boolean;
+}
+
+async function call<T>(task: string, input: Record<string, string>, language: string): Promise<T> {
+  const res = await fetch("/api/ai", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ task, input, language }),
+  });
+  if (!res.ok) throw new Error("Something went wrong. Please try again.");
+  return (await res.json()) as T;
+}
+
+export const generateDescription = (input: Record<string, string>, language = "en") =>
+  call<DescriptionResult>("description", input, language);
+
+export const generateStory = (input: Record<string, string>, language = "en") =>
+  call<{ story: string; demo?: boolean }>("story", input, language);
+
+export const translateText = (text: string, language: string) =>
+  call<{ text: string; demo?: boolean }>("translate", { text }, language);
+
+/* ---------------- Fair price assistant (rule + cost based) ---------------- */
+
+export interface PriceInput {
+  materialCost: number;
+  labourCost: number;
+  otherCost: number;
+  hours: number;
+  quantity: number;
+  category: string;
+}
+
+export interface PriceResult {
+  min: number;
+  max: number;
+  base: number;
+  reasons: string[];
+}
+
+const CATEGORY_MARGIN: Record<string, number> = {
+  "Home & Storage": 0.25,
+  "Kitchen & Dining": 0.22,
+  "Lighting & Decor": 0.35,
+  "Clothing & Textile": 0.3,
+  Jewellery: 0.45,
+  "Toys & Gifts": 0.28,
+  "Religious & Festive": 0.3,
+};
+
+export function suggestPrice(i: PriceInput): PriceResult {
+  const costs = Math.max(0, i.materialCost) + Math.max(0, i.labourCost) + Math.max(0, i.otherCost);
+  const timeValue = Math.max(0, i.hours) * 60; // fair hourly value for skilled handwork
+  const margin = CATEGORY_MARGIN[i.category] ?? 0.25;
+  const bulkDiscount = i.quantity >= 100 ? 0.92 : i.quantity >= 25 ? 0.96 : 1;
+  const base = Math.round((Math.max(costs, timeValue ? costs * 0.7 + timeValue * 0.3 : costs) * (1 + margin) * bulkDiscount) / 10) * 10;
+  const min = Math.max(10, Math.round((base * 0.95) / 10) * 10);
+  const max = Math.round((base * 1.25) / 10) * 10;
+  const reasons = [
+    `Your total cost is ₹${costs.toLocaleString("en-IN")} (material + making + other).`,
+    `A ${Math.round(margin * 100)}% margin is added for the ${i.category || "selected"} category.`,
+    i.hours > 0 ? `${i.hours} hour(s) of handwork is counted in the value.` : "Add working hours for a better estimate.",
+    bulkDiscount < 1 ? `A bulk order of ${i.quantity} pieces lowers the per-piece price.` : "Price is for small quantity orders.",
+  ];
+  return { min, max, base, reasons };
+}
+
+/* ---------------- Buyer matching (recommendation score) ---------------- */
+
+export interface MatchResult {
+  buyer: Buyer;
+  score: number;
+  reasons: string[];
+}
+
+export function matchBuyers(product: Product, buyers: Buyer[]): MatchResult[] {
+  return buyers
+    .map((buyer) => {
+      let score = 40;
+      const reasons: string[] = [];
+      if (buyer.interests.includes(product.category)) {
+        score += 25;
+        reasons.push(`Buys products in "${product.category}".`);
+      }
+      if (buyer.materials.some((m) => m.toLowerCase() === product.material.toLowerCase())) {
+        score += 20;
+        reasons.push(`Looking for ${product.material.toLowerCase()} products.`);
+      }
+      const price = product.price || product.priceMin;
+      if (price >= buyer.budgetMin && price <= buyer.budgetMax) {
+        score += 15;
+        reasons.push(`Your price ₹${price} fits their budget ₹${buyer.budgetMin}–₹${buyer.budgetMax}.`);
+      } else {
+        score -= 10;
+        reasons.push(`Your price is outside their usual budget ₹${buyer.budgetMin}–₹${buyer.budgetMax}.`);
+      }
+      const state = product.location.split(",").pop()?.trim().toLowerCase() ?? "";
+      if (state && buyer.location.toLowerCase().includes(state)) {
+        score += 8;
+        reasons.push("Located in your state, so delivery is easier.");
+      }
+      return { buyer, score: Math.max(35, Math.min(98, score)), reasons };
+    })
+    .sort((a, b) => b.score - a.score);
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/lib/demo-data.ts
+Lines: 275
+--------------------------------------------------------------------------------
+
+import type { Artisan, Buyer, BuyerRequest, Product } from "./types";
+
+export const DEMO_ARTISAN: Artisan = {
+  id: "art_demo",
+  name: "Lakshmi Devi",
+  email: "demo@artisanlink.ai",
+  mobile: "+91 98765 43210",
+  state: "Telangana",
+  district: "Warangal",
+  village: "Pembarthi",
+  craftType: "Bamboo & Cane Weaving",
+  language: "te",
+  experience: 18,
+  craftStory:
+    "Our family has woven bamboo baskets for four generations. Every piece is shaped by hand, without machines.",
+  contactPreference: "whatsapp",
+  role: "artisan",
+  verified: true,
+};
+
+export const DEMO_ADMIN: Artisan = {
+  ...DEMO_ARTISAN,
+  id: "art_admin",
+  name: "Admin",
+  email: "admin@artisanlink.ai",
+  role: "admin",
+};
+
+const now = new Date().toISOString();
+
+export const DEMO_PRODUCTS: Product[] = [
+  {
+    id: "prd_1",
+    artisanId: "art_demo",
+    name: "Handmade Bamboo Storage Basket",
+    shortDescription: "Hand-woven bamboo basket for storage, decor and gifting.",
+    description:
+      "Beautiful handmade bamboo basket created using traditional weaving techniques. Lightweight, durable and suitable for home decoration, storage and gifting. Each basket is shaped by hand, so small natural variations are part of its character.",
+    originalDescription:
+      "This is a bamboo basket made by my family using our old weaving way. It is strong and light.",
+    category: "Home & Storage",
+    material: "Bamboo",
+    craftType: "Bamboo & Cane Weaving",
+    technique: "Traditional coil weaving",
+    location: "Pembarthi, Warangal, Telangana",
+    priceMin: 850,
+    priceMax: 1100,
+    price: 950,
+    availability: "available",
+    craftStory:
+      "This craft represents a bamboo weaving practice carried forward in our family for four generations.",
+    keywords: ["bamboo basket", "handmade", "eco friendly", "storage", "home decor"],
+    published: true,
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "prd_2",
+    artisanId: "art_demo",
+    name: "Cane Fruit Tray",
+    shortDescription: "Light cane tray woven by hand for everyday use.",
+    description:
+      "A hand-woven cane tray with a smooth finish, suitable for serving, fruit storage and table decoration.",
+    originalDescription: "Cane tray, we make it in two days, good for fruits.",
+    category: "Kitchen & Dining",
+    material: "Cane",
+    craftType: "Bamboo & Cane Weaving",
+    technique: "Flat hand weaving",
+    location: "Pembarthi, Warangal, Telangana",
+    priceMin: 480,
+    priceMax: 650,
+    price: 550,
+    availability: "made-to-order",
+    craftStory: "Cane trays are woven during the dry season when the cane is easiest to bend.",
+    keywords: ["cane tray", "handmade", "serving tray"],
+    published: true,
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "prd_3",
+    artisanId: "art_demo",
+    name: "Bamboo Lamp Shade",
+    shortDescription: "Warm-glow bamboo lamp shade, hand finished.",
+    description:
+      "A hand-woven bamboo lamp shade that spreads a soft, warm light. Made with seasoned bamboo strips and finished by hand.",
+    originalDescription: "Lamp cover made from thin bamboo strips.",
+    category: "Lighting & Decor",
+    material: "Bamboo",
+    craftType: "Bamboo & Cane Weaving",
+    technique: "Strip weaving",
+    location: "Pembarthi, Warangal, Telangana",
+    priceMin: 1200,
+    priceMax: 1600,
+    price: 1350,
+    availability: "available",
+    craftStory: "Lamp shades were first made for village festivals and later for homes.",
+    keywords: ["bamboo lamp", "handmade lighting", "decor"],
+    published: false,
+    createdAt: now,
+    updatedAt: now,
+  },
+];
+
+export const DEMO_BUYERS: Buyer[] = [
+  {
+    id: "buy_1",
+    name: "Kalakriti Handicraft Boutique",
+    category: "Handicraft Boutiques",
+    location: "Hyderabad, Telangana",
+    interests: ["Home & Storage", "Lighting & Decor"],
+    materials: ["Bamboo", "Cane"],
+    quantity: "50 - 200 pieces",
+    budgetMin: 700,
+    budgetMax: 1500,
+    contact: "buying@kalakriti.example",
+    about: "Boutique store sourcing handmade bamboo and cane products for urban customers.",
+  },
+  {
+    id: "buy_2",
+    name: "Green Leaf Resorts",
+    category: "Hotels",
+    location: "Goa",
+    interests: ["Lighting & Decor", "Home & Storage"],
+    materials: ["Bamboo"],
+    quantity: "100 - 400 pieces",
+    budgetMin: 900,
+    budgetMax: 2000,
+    contact: "purchase@greenleaf.example",
+    about: "Resort chain furnishing rooms with eco-friendly handmade decor.",
+  },
+  {
+    id: "buy_3",
+    name: "Bharat Gifting Solutions",
+    category: "Corporate Gift Buyers",
+    location: "Bengaluru, Karnataka",
+    interests: ["Home & Storage", "Kitchen & Dining"],
+    materials: ["Bamboo", "Cane", "Jute"],
+    quantity: "500 - 2000 pieces",
+    budgetMin: 400,
+    budgetMax: 1000,
+    contact: "orders@bharatgifting.example",
+    about: "Bulk corporate gifting company looking for sustainable handmade items.",
+  },
+  {
+    id: "buy_4",
+    name: "EarthCraft Exports",
+    category: "Exporters",
+    location: "Chennai, Tamil Nadu",
+    interests: ["Home & Storage", "Kitchen & Dining", "Lighting & Decor"],
+    materials: ["Bamboo", "Cane"],
+    quantity: "1000+ pieces",
+    budgetMin: 600,
+    budgetMax: 1800,
+    contact: "sourcing@earthcraft.example",
+    about: "Exports Indian handicrafts to Europe and Japan.",
+  },
+  {
+    id: "buy_5",
+    name: "Spice Route Restaurant Group",
+    category: "Restaurants",
+    location: "Mumbai, Maharashtra",
+    interests: ["Kitchen & Dining"],
+    materials: ["Cane", "Wood"],
+    quantity: "80 - 300 pieces",
+    budgetMin: 350,
+    budgetMax: 900,
+    contact: "supplies@spiceroute.example",
+    about: "Restaurant group using handmade serveware across outlets.",
+  },
+  {
+    id: "buy_6",
+    name: "State Handicraft Development Board",
+    category: "Government Procurement",
+    location: "Telangana",
+    interests: ["Home & Storage", "Lighting & Decor", "Kitchen & Dining"],
+    materials: ["Bamboo", "Cane", "Clay"],
+    quantity: "200 - 1000 pieces",
+    budgetMin: 500,
+    budgetMax: 1400,
+    contact: "procurement@handicraft.gov.example",
+    about: "Government body procuring artisan products for emporiums and exhibitions.",
+  },
+  {
+    id: "buy_7",
+    name: "Nirmal Retail Stores",
+    category: "Retail Stores",
+    location: "Pune, Maharashtra",
+    interests: ["Home & Storage"],
+    materials: ["Bamboo", "Jute"],
+    quantity: "60 - 250 pieces",
+    budgetMin: 450,
+    budgetMax: 1100,
+    contact: "buyer@nirmalretail.example",
+    about: "Retail chain with a dedicated handmade goods section.",
+  },
+  {
+    id: "buy_8",
+    name: "CraftBazaar Online",
+    category: "Online Sellers",
+    location: "Delhi",
+    interests: ["Home & Storage", "Lighting & Decor", "Kitchen & Dining"],
+    materials: ["Bamboo", "Cane", "Cotton"],
+    quantity: "30 - 500 pieces",
+    budgetMin: 300,
+    budgetMax: 2500,
+    contact: "sellers@craftbazaar.example",
+    about: "Marketplace onboarding artisans for online selling.",
+  },
+];
+
+export const DEMO_REQUESTS: BuyerRequest[] = [
+  {
+    id: "req_1",
+    buyerId: "buy_1",
+    artisanId: "art_demo",
+    productId: "prd_1",
+    quantity: 120,
+    expectedPrice: 900,
+    deliveryLocation: "Hyderabad, Telangana",
+    message: "We would like 120 storage baskets for our festive collection. Can you deliver in 30 days?",
+    status: "new",
+    createdAt: now,
+  },
+  {
+    id: "req_2",
+    buyerId: "buy_2",
+    artisanId: "art_demo",
+    productId: "prd_3",
+    quantity: 60,
+    expectedPrice: 1300,
+    deliveryLocation: "Goa",
+    message: "Looking for bamboo lamp shades for 60 rooms. Please share samples.",
+    status: "pending",
+    createdAt: now,
+  },
+  {
+    id: "req_3",
+    buyerId: "buy_3",
+    artisanId: "art_demo",
+    productId: "prd_2",
+    quantity: 500,
+    expectedPrice: 500,
+    deliveryLocation: "Bengaluru, Karnataka",
+    message: "Corporate gifting order for 500 cane trays.",
+    status: "accepted",
+    createdAt: now,
+  },
+];
+
+export const CRAFT_TYPES = [
+  "Bamboo & Cane Weaving",
+  "Handloom Weaving",
+  "Pottery & Terracotta",
+  "Wood Carving",
+  "Metal Craft",
+  "Block Printing",
+  "Embroidery",
+  "Jute Craft",
+  "Stone Carving",
+  "Other",
+];
+
+export const CATEGORIES = [
+  "Home & Storage",
+  "Kitchen & Dining",
+  "Lighting & Decor",
+  "Clothing & Textile",
+  "Jewellery",
+  "Toys & Gifts",
+  "Religious & Festive",
+];
+
+export const MATERIALS = ["Bamboo", "Cane", "Cotton", "Silk", "Clay", "Wood", "Brass", "Jute", "Stone"];
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/lib/image.ts
+Lines: 50
+--------------------------------------------------------------------------------
+
+/**
+ * Reads an image file, compresses and resizes it in the browser, and returns
+ * a data URL. Keeps uploads small so the app stays fast on slow connections.
+ */
+export async function compressImage(file: File, maxSize = 1200, quality = 0.75): Promise<string> {
+  const dataUrl = await new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(new Error("Could not read the image."));
+    reader.readAsDataURL(file);
+  });
+
+  const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+    const el = new Image();
+    el.onload = () => resolve(el);
+    el.onerror = () => reject(new Error("Could not open the image."));
+    el.src = dataUrl;
+  });
+
+  const scale = Math.min(1, maxSize / Math.max(img.width, img.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(img.width * scale);
+  canvas.height = Math.round(img.height * scale);
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return dataUrl;
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  return canvas.toDataURL("image/jpeg", quality);
+}
+
+/**
+ * "Photo clean-up": a light brightness / contrast / saturation pass so a
+ * simple mobile photo looks closer to a studio shot. Runs fully offline.
+ */
+export async function enhanceImage(dataUrl: string): Promise<string> {
+  const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+    const el = new Image();
+    el.onload = () => resolve(el);
+    el.onerror = () => reject(new Error("Could not open the image."));
+    el.src = dataUrl;
+  });
+  const canvas = document.createElement("canvas");
+  canvas.width = img.width;
+  canvas.height = img.height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return dataUrl;
+  ctx.filter = "brightness(1.08) contrast(1.12) saturate(1.15)";
+  ctx.drawImage(img, 0, 0);
+  return canvas.toDataURL("image/jpeg", 0.82);
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/lib/utils.ts
+Lines: 7
+--------------------------------------------------------------------------------
+
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/lib/error-capture.ts
+Lines: 82
+--------------------------------------------------------------------------------
+
+// Captures the original Error out-of-band so server.ts can recover the stack
+// when h3 has already swallowed the throw into a generic 500 Response.
+
+let lastCapturedError: { error: unknown; at: number } | undefined;
+const TTL_MS = 5_000;
+
+function record(error: unknown) {
+  lastCapturedError = { error, at: Date.now() };
+}
+
+// h3's HTTPError serializes to {"status":500,"unhandled":true,"message":"HTTPError"} —
+// no stack, no cause — so a plain console.error(error) reaches the log pipeline with
+// the failure detail stripped. Expand Error-like args into a string that keeps the
+// message, stack, and the full cause chain.
+const CAUSE_DEPTH_LIMIT = 5;
+const DESCRIPTION_LENGTH_LIMIT = 8_000;
+
+export function describeError(error: unknown): string {
+  const parts: string[] = [];
+  let current: unknown = error;
+  for (let depth = 0; depth < CAUSE_DEPTH_LIMIT && current != null; depth++) {
+    if (!(current instanceof Error)) {
+      parts.push(typeof current === "string" ? current : safeStringify(current));
+      break;
+    }
+    const label = depth === 0 ? "" : "caused by: ";
+    const status = describeStatus(current);
+    parts.push(`${label}${current.stack ?? `${current.name}: ${current.message}`}${status}`);
+    current = current.cause;
+  }
+  return parts.join("\n").slice(0, DESCRIPTION_LENGTH_LIMIT);
+}
+
+function describeStatus(error: Error): string {
+  const { status, statusCode } = error as { status?: unknown; statusCode?: unknown };
+  const value = status ?? statusCode;
+  return typeof value === "number" ? ` (status ${value})` : "";
+}
+
+function safeStringify(value: unknown): string {
+  try {
+    return JSON.stringify(value) ?? String(value);
+  } catch {
+    return String(value);
+  }
+}
+
+function isErrorLike(value: unknown): value is Error {
+  return value instanceof Error;
+}
+
+// Wrap console.error so errors logged by any layer — including h3's internal
+// unhandled-error logging, which this file cannot hook directly — are both
+// recorded for consumeLastCapturedError and expanded before serialization.
+const originalConsoleError = console.error.bind(console);
+console.error = (...args: unknown[]) => {
+  const expanded = args.map((arg) => {
+    if (!isErrorLike(arg)) return arg;
+    record(arg);
+    return describeError(arg);
+  });
+  originalConsoleError(...expanded);
+};
+
+if (typeof globalThis.addEventListener === "function") {
+  globalThis.addEventListener("error", (event) => record((event as ErrorEvent).error ?? event));
+  globalThis.addEventListener("unhandledrejection", (event) =>
+    record((event as PromiseRejectionEvent).reason),
+  );
+}
+
+export function consumeLastCapturedError(): unknown {
+  if (!lastCapturedError) return undefined;
+  if (Date.now() - lastCapturedError.at > TTL_MS) {
+    lastCapturedError = undefined;
+    return undefined;
+  }
+  const { error } = lastCapturedError;
+  lastCapturedError = undefined;
+  return error;
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/lib/error-page.ts
+Lines: 31
+--------------------------------------------------------------------------------
+
+export function renderErrorPage(): string {
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>This page didn't load</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body { font: 15px/1.5 system-ui, -apple-system, sans-serif; background: #fafafa; color: #111; display: grid; place-items: center; min-height: 100vh; margin: 0; padding: 1.5rem; }
+      .card { max-width: 28rem; width: 100%; text-align: center; padding: 2rem; }
+      h1 { font-size: 1.25rem; margin: 0 0 0.5rem; }
+      p { color: #4b5563; margin: 0 0 1.5rem; }
+      .actions { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+      a, button { padding: 0.5rem 1rem; border-radius: 0.375rem; font: inherit; cursor: pointer; text-decoration: none; border: 1px solid transparent; }
+      .primary { background: #111; color: #fff; }
+      .secondary { background: #fff; color: #111; border-color: #d1d5db; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>This page didn't load</h1>
+      <p>Something went wrong on our end. You can try refreshing or head back home.</p>
+      <div class="actions">
+        <button class="primary" onclick="location.reload()">Try again</button>
+        <a class="secondary" href="/">Go home</a>
+      </div>
+    </div>
+  </body>
+</html>`;
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/lib/lovable-error-reporting.ts
+Lines: 60
+--------------------------------------------------------------------------------
+
+type LovableErrorOptions = {
+  mechanism?: "manual" | "onerror" | "unhandledrejection" | "react_error_boundary";
+  handled?: boolean;
+  severity?: "error" | "warning" | "info";
+};
+
+type LovableEvents = {
+  track?: (event: string, properties?: Record<string, unknown>) => string | null;
+  captureException?: (
+    error: unknown,
+    context?: Record<string, unknown>,
+    options?: LovableErrorOptions,
+  ) => void;
+};
+
+declare global {
+  interface Window {
+    __lovableEvents?: LovableEvents;
+    __lovableReportRuntimeError?: (payload: {
+      message: string;
+      stack?: string;
+      filename?: string;
+    }) => void;
+  }
+}
+
+export function reportLovableError(error: unknown, context: Record<string, unknown> = {}) {
+  if (typeof window === "undefined") return;
+  window.__lovableEvents?.captureException?.(
+    error,
+    {
+      source: "react_error_boundary",
+      route: window.location.pathname,
+      ...context,
+    },
+    {
+      mechanism: "react_error_boundary",
+      handled: false,
+      severity: "error",
+    },
+  );
+  // Prod React does not rethrow boundary-caught errors to window.onerror, so the
+  // editor's telemetry never sees them. Forward to lovable.js's reporting hook,
+  // which is present only inside the editor preview.
+  // Loaders and server fns commonly throw a raw Response; String(it) is the
+  // opaque "[object Response]", so pull out the status and URL instead.
+  const message =
+    error instanceof Response
+      ? `Response ${error.status}${error.url ? ` at ${error.url}` : ""}`
+      : error instanceof Error
+        ? error.message
+        : String(error);
+  const stack = error instanceof Error ? error.stack : undefined;
+  window.__lovableReportRuntimeError?.({
+    message,
+    ...(stack !== undefined && { stack }),
+    filename: window.location.pathname,
+  });
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/components/layout.tsx
+Lines: 200
+--------------------------------------------------------------------------------
+
+import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
+import {
+  Home,
+  Package,
+  PlusCircle,
+  Users,
+  Inbox,
+  User,
+  Settings,
+  HelpCircle,
+  Shield,
+  LogOut,
+  Bell,
+  Menu,
+  Languages,
+} from "lucide-react";
+import { useState, type ReactNode } from "react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { Badge } from "@/components/ui/badge";
+import { useStore } from "@/lib/store";
+import { cn } from "@/lib/utils";
+
+export function Logo({ large }: { large?: boolean }) {
+  return (
+    <Link to="/" className="flex items-center gap-2">
+      <span className={large ? "text-3xl" : "text-2xl"} aria-hidden>
+        🧵
+      </span>
+      <span
+        className={cn(
+          "font-display font-bold tracking-tight text-foreground",
+          large ? "text-2xl sm:text-3xl" : "text-lg",
+        )}
+      >
+        ARTISAN<span className="text-primary">LINK</span>-AI
+      </span>
+    </Link>
+  );
+}
+
+export function DemoBadge() {
+  const { demoMode } = useStore();
+  if (!demoMode) return null;
+  return (
+    <Badge variant="secondary" className="border border-border bg-warning/25 text-foreground">
+      Demo Mode · sample data
+    </Badge>
+  );
+}
+
+const NAV = [
+  { to: "/dashboard", label: "Home", icon: Home },
+  { to: "/products", label: "My Products", icon: Package },
+  { to: "/products/add", label: "Add Product", icon: PlusCircle },
+  { to: "/buyers", label: "Find Buyers", icon: Users },
+  { to: "/requests", label: "Buyer Requests", icon: Inbox },
+  { to: "/profile", label: "My Profile", icon: User },
+  { to: "/language", label: "Language", icon: Languages },
+  { to: "/help", label: "Help", icon: HelpCircle },
+  { to: "/settings", label: "Settings", icon: Settings },
+] as const;
+
+const MOBILE_NAV = NAV.slice(0, 5);
+
+function NavList({ onNavigate }: { onNavigate?: () => void }) {
+  const path = useRouterState({ select: (s) => s.location.pathname });
+  const { user } = useStore();
+  const items = user?.role === "admin" ? [...NAV, { to: "/admin", label: "Admin", icon: Shield } as const] : NAV;
+  return (
+    <nav className="flex flex-col gap-1">
+      {items.map(({ to, label, icon: Icon }) => (
+        <Link
+          key={to}
+          to={to}
+          onClick={onNavigate}
+          className={cn(
+            "flex items-center gap-3 rounded-xl px-4 py-3 text-base font-semibold transition-colors",
+            path === to
+              ? "bg-sidebar-primary text-sidebar-primary-foreground"
+              : "text-sidebar-foreground hover:bg-sidebar-accent",
+          )}
+        >
+          <Icon className="size-5 shrink-0" aria-hidden />
+          {label}
+        </Link>
+      ))}
+    </nav>
+  );
+}
+
+export function AppLayout({ children }: { children: ReactNode }) {
+  const { user, logout, notifications } = useStore();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const unread = notifications.filter((n) => !n.read).length;
+
+  return (
+    <div className="flex min-h-screen bg-background">
+      <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-sidebar-border bg-sidebar p-4 lg:flex">
+        <div className="px-2 pb-4">
+          <Logo />
+        </div>
+        <NavList />
+        <div className="mt-auto space-y-3 px-2">
+          <DemoBadge />
+          <Button
+            variant="outline"
+            className="w-full justify-start gap-2"
+            onClick={() => {
+              logout();
+              navigate({ to: "/" });
+            }}
+          >
+            <LogOut className="size-4" /> Log out
+          </Button>
+        </div>
+      </aside>
+
+      <div className="flex min-w-0 flex-1 flex-col">
+        <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-border bg-card/95 px-4 py-3 backdrop-blur lg:px-8">
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild className="lg:hidden">
+              <Button variant="ghost" size="icon" aria-label="Open menu">
+                <Menu className="size-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-[86vw] max-w-xs bg-sidebar p-4">
+              <SheetTitle className="sr-only">Menu</SheetTitle>
+              <div className="pb-4">
+                <Logo />
+              </div>
+              <NavList onNavigate={() => setOpen(false)} />
+            </SheetContent>
+          </Sheet>
+          <div className="lg:hidden">
+            <Logo />
+          </div>
+          <div className="ml-auto flex items-center gap-2">
+            <div className="hidden sm:block">
+              <DemoBadge />
+            </div>
+            <Link to="/settings" className="relative" aria-label="Notifications">
+              <Button variant="ghost" size="icon">
+                <Bell className="size-5" />
+              </Button>
+              {unread > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 flex size-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                  {unread}
+                </span>
+              )}
+            </Link>
+            <Link to="/profile" className="hidden items-center gap-2 sm:flex">
+              <span className="grid size-9 place-items-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                {(user?.name ?? "A").charAt(0)}
+              </span>
+            </Link>
+          </div>
+        </header>
+
+        <main className="flex-1 px-4 pb-28 pt-5 lg:px-8 lg:pb-10">{children}</main>
+
+        <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-border bg-card lg:hidden">
+          {MOBILE_NAV.map(({ to, label, icon: Icon }) => (
+            <Link
+              key={to}
+              to={to}
+              className="flex flex-col items-center gap-1 px-1 py-2 text-[11px] font-semibold text-muted-foreground [&.active]:text-primary"
+              activeProps={{ className: "active" }}
+            >
+              <Icon className="size-5" aria-hidden />
+              <span className="text-center leading-tight">{label}</span>
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </div>
+  );
+}
+
+export function PageHeader({
+  title,
+  subtitle,
+  action,
+}: {
+  title: string;
+  subtitle?: string;
+  action?: ReactNode;
+}) {
+  return (
+    <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <h1 className="text-2xl font-bold sm:text-3xl">{title}</h1>
+        {subtitle && <p className="mt-1 max-w-2xl text-muted-foreground">{subtitle}</p>}
+      </div>
+      {action}
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/components/common.tsx
+Lines: 104
+--------------------------------------------------------------------------------
+
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Loader2, Sparkles } from "lucide-react";
+import { LANGUAGES, type Language } from "@/lib/types";
+import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
+
+export function StatCard({
+  icon,
+  label,
+  value,
+  hint,
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string | number;
+  hint?: string;
+}) {
+  return (
+    <Card className="shadow-card">
+      <CardContent className="flex items-center gap-4 p-5">
+        <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-secondary text-2xl">
+          {icon}
+        </span>
+        <div className="min-w-0">
+          <p className="text-sm font-medium text-muted-foreground">{label}</p>
+          <p className="text-2xl font-bold">{value}</p>
+          {hint && <p className="truncate text-xs text-muted-foreground">{hint}</p>}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+export function EmptyState({
+  emoji = "📦",
+  title,
+  body,
+  action,
+}: {
+  emoji?: string;
+  title: string;
+  body?: string;
+  action?: ReactNode;
+}) {
+  return (
+    <Card className="border-dashed">
+      <CardContent className="flex flex-col items-center gap-3 p-10 text-center">
+        <span className="text-5xl" aria-hidden>
+          {emoji}
+        </span>
+        <h3 className="text-xl font-semibold">{title}</h3>
+        {body && <p className="max-w-md text-muted-foreground">{body}</p>}
+        {action}
+      </CardContent>
+    </Card>
+  );
+}
+
+export function LoadingSpinner({ label }: { label?: string }) {
+  return (
+    <div className="flex items-center justify-center gap-2 py-8 text-muted-foreground">
+      <Loader2 className="size-5 animate-spin" />
+      {label ?? "Please wait..."}
+    </div>
+  );
+}
+
+export function AiNote({ children }: { children: ReactNode }) {
+  return (
+    <p className="flex items-start gap-2 rounded-xl bg-secondary/70 px-3 py-2 text-sm text-secondary-foreground">
+      <Sparkles className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+      <span>{children}</span>
+    </p>
+  );
+}
+
+export function LanguageSelector({
+  value,
+  onChange,
+  compact,
+}: {
+  value: Language;
+  onChange: (l: Language) => void;
+  compact?: boolean;
+}) {
+  return (
+    <div className={cn("grid gap-3", compact ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-2 sm:grid-cols-3")}>
+      {LANGUAGES.map((l) => (
+        <Button
+          key={l.code}
+          type="button"
+          variant={value === l.code ? "default" : "outline"}
+          className="h-auto flex-col gap-1 py-4 text-base"
+          onClick={() => onChange(l.code)}
+        >
+          <span className="text-lg font-bold">{l.native}</span>
+          <span className="text-xs opacity-80">{l.label}</span>
+        </Button>
+      ))}
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/components/protected.tsx
+Lines: 33
+--------------------------------------------------------------------------------
+
+import { Link } from "@tanstack/react-router";
+import type { ReactNode } from "react";
+import { AppLayout } from "@/components/layout";
+import { Button } from "@/components/ui/button";
+import { EmptyState } from "@/components/common";
+import { useStore } from "@/lib/store";
+
+/**
+ * Wraps every signed-in page: shows the app shell, and a friendly sign-in
+ * prompt when nobody is logged in.
+ */
+export function Protected({ children }: { children: ReactNode }) {
+  const { user } = useStore();
+  return (
+    <AppLayout>
+      {user ? (
+        children
+      ) : (
+        <EmptyState
+          emoji="🔐"
+          title="Please log in to continue"
+          body="Log in with the demo account to see your products, buyers and requests."
+          action={
+            <Button asChild size="lg">
+              <Link to="/login">Go to login</Link>
+            </Button>
+          }
+        />
+      )}
+    </AppLayout>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/hooks/use-speech.ts
+Lines: 62
+--------------------------------------------------------------------------------
+
+import { useCallback, useEffect, useRef, useState } from "react";
+import { SPEECH_LOCALE, type Language } from "@/lib/types";
+
+type SpeechRecognitionLike = {
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  start: () => void;
+  stop: () => void;
+  onresult: ((e: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+};
+
+/** Voice typing using the browser's own speech recognition (no extra library). */
+export function useSpeechInput(language: Language, onText: (text: string) => void) {
+  const [listening, setListening] = useState(false);
+  const [supported, setSupported] = useState(false);
+  const ref = useRef<SpeechRecognitionLike | null>(null);
+
+  useEffect(() => {
+    const w = window as unknown as Record<string, unknown>;
+    setSupported(Boolean(w["SpeechRecognition"] || w["webkitSpeechRecognition"]));
+  }, []);
+
+  const start = useCallback(() => {
+    const w = window as unknown as Record<string, new () => SpeechRecognitionLike>;
+    const Ctor = w["SpeechRecognition"] || w["webkitSpeechRecognition"];
+    if (!Ctor) return;
+    const rec = new Ctor();
+    rec.lang = SPEECH_LOCALE[language];
+    rec.continuous = false;
+    rec.interimResults = false;
+    rec.onresult = (e) => {
+      let text = "";
+      for (let i = 0; i < e.results.length; i++) text += e.results[i]?.[0]?.transcript ?? "";
+      if (text.trim()) onText(text.trim());
+    };
+    rec.onerror = () => setListening(false);
+    rec.onend = () => setListening(false);
+    ref.current = rec;
+    setListening(true);
+    rec.start();
+  }, [language, onText]);
+
+  const stop = useCallback(() => {
+    ref.current?.stop();
+    setListening(false);
+  }, []);
+
+  return { listening, supported, start, stop };
+}
+
+/** Reads text aloud in the chosen language. */
+export function speak(text: string, language: Language) {
+  if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = SPEECH_LOCALE[language];
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(u);
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/hooks/use-mobile.tsx
+Lines: 20
+--------------------------------------------------------------------------------
+
+import * as React from "react";
+
+const MOBILE_BREAKPOINT = 768;
+
+export function useIsMobile() {
+  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
+
+  React.useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
+    const onChange = () => {
+      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    };
+    mql.addEventListener("change", onChange);
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+
+  return !!isMobile;
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/__root.tsx
+Lines: 146
+--------------------------------------------------------------------------------
+
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  Outlet,
+  Link,
+  createRootRouteWithContext,
+  useRouter,
+  HeadContent,
+  Scripts,
+} from "@tanstack/react-router";
+import { useEffect, type ReactNode } from "react";
+
+import appCss from "../styles.css?url";
+import { reportLovableError } from "../lib/lovable-error-reporting";
+import { StoreProvider } from "../lib/store";
+import { Toaster } from "../components/ui/sonner";
+
+function NotFoundComponent() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="max-w-md text-center">
+        <h1 className="text-7xl font-bold text-foreground">404</h1>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          The page you're looking for doesn't exist or has been moved.
+        </p>
+        <div className="mt-6">
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Go home
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+  console.error(error);
+  const router = useRouter();
+  useEffect(() => {
+    reportLovableError(error, { boundary: "tanstack_root_error_component" });
+  }, [error]);
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="max-w-md text-center">
+        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+          This page didn't load
+        </h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Something went wrong on our end. You can try refreshing or head back home.
+        </p>
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
+          <button
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Try again
+          </button>
+          <a
+            href="/"
+            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          >
+            Go home
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "ARTISANLINK-AI — AI marketplace assistant for artisans" },
+      {
+        name: "description",
+        content:
+          "ARTISANLINK-AI helps traditional artisans list crafts, write descriptions, set fair prices and find buyers — in their own language.",
+      },
+      { name: "author", content: "ARTISANLINK-AI" },
+      { property: "og:title", content: "ARTISANLINK-AI — AI marketplace assistant for artisans" },
+      {
+        property: "og:description",
+        content:
+          "List your craft, get a clear description, a fair price and matching buyers — with voice help in 8 Indian languages.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@Lovable" },
+    ],
+    links: [
+      {
+        rel: "stylesheet",
+        href: appCss,
+      },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Mulish:wght@400;600;700;800&display=swap",
+      },
+    ],
+  }),
+  shellComponent: RootShell,
+  component: RootComponent,
+  notFoundComponent: NotFoundComponent,
+  errorComponent: ErrorComponent,
+});
+
+function RootShell({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+function RootComponent() {
+  const { queryClient } = Route.useRouteContext();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <StoreProvider>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+        <Toaster richColors position="top-center" />
+      </StoreProvider>
+    </QueryClientProvider>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/index.tsx
+Lines: 141
+--------------------------------------------------------------------------------
+
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Camera, Coins, Languages, Mic, Sparkles, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Logo } from "@/components/layout";
+import { CRAFT_TYPES } from "@/lib/demo-data";
+
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "ARTISANLINK-AI — Sell your handmade craft online" },
+      {
+        name: "description",
+        content:
+          "ARTISANLINK-AI writes your product description, suggests a fair price, cleans up your photo and finds matching buyers — in 8 Indian languages.",
+      },
+      { property: "og:title", content: "ARTISANLINK-AI — Sell your handmade craft online" },
+      {
+        property: "og:description",
+        content:
+          "An AI helper for traditional artisans: descriptions, fair pricing, photo clean-up, buyer matching and voice input.",
+      },
+    ],
+  }),
+  component: Landing,
+});
+
+const FEATURES = [
+  { icon: Sparkles, title: "Descriptions written for you", body: "Say a few words about your craft and get a clear, honest listing." },
+  { icon: Coins, title: "Fair price help", body: "Enter your material and making cost to get a fair price range." },
+  { icon: Camera, title: "Photo clean-up", body: "Brighten a simple mobile photo so your product looks its best." },
+  { icon: Users, title: "Buyer matching", body: "See boutiques, exporters, hotels and gift buyers who want your craft." },
+  { icon: Languages, title: "8 Indian languages", body: "Work in English, Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi or Bengali." },
+  { icon: Mic, title: "Speak instead of typing", body: "Use your voice where typing is hard, and listen to text read aloud." },
+];
+
+const STEPS = [
+  "Add your craft with a photo and a few words",
+  "Get a description, story and fair price",
+  "Publish it and see matching buyers",
+  "Reply to buyer requests and take orders",
+];
+
+function Landing() {
+  return (
+    <div className="min-h-screen">
+      <header className="flex items-center justify-between px-4 py-4 lg:px-10">
+        <Logo />
+        <div className="flex items-center gap-2">
+          <Button asChild variant="ghost">
+            <Link to="/login">Log in</Link>
+          </Button>
+          <Button asChild>
+            <Link to="/register">Get started</Link>
+          </Button>
+        </div>
+      </header>
+
+      <section className="bg-hero-gradient px-4 py-14 lg:px-10 lg:py-20">
+        <div className="mx-auto max-w-5xl text-center">
+          <p className="mb-4 inline-block rounded-full bg-card/80 px-4 py-1 text-sm font-semibold text-foreground">
+            For traditional artisans and craft makers
+          </p>
+          <h1 className="text-3xl font-bold leading-tight sm:text-5xl">
+            Your craft deserves buyers. We help you reach them.
+          </h1>
+          <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
+            ARTISANLINK-AI turns a photo and a few spoken words into a proper product listing — with a
+            fair price, a craft story and a list of buyers who are looking for exactly what you make.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Button asChild size="lg" className="text-base">
+              <Link to="/register">Create my free account</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="bg-card/80 text-base">
+              <Link to="/login">Try the demo account</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-14 lg:px-10">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="text-center text-2xl font-bold sm:text-3xl">What you get</h2>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map(({ icon: Icon, title, body }) => (
+              <Card key={title} className="shadow-card">
+                <CardContent className="p-6">
+                  <span className="grid size-11 place-items-center rounded-2xl bg-secondary">
+                    <Icon className="size-5 text-primary" aria-hidden />
+                  </span>
+                  <h3 className="mt-4 text-lg font-semibold">{title}</h3>
+                  <p className="mt-1 text-muted-foreground">{body}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-secondary/50 px-4 py-14 lg:px-10">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-center text-2xl font-bold sm:text-3xl">How it works</h2>
+          <ol className="mt-8 grid gap-4 sm:grid-cols-2">
+            {STEPS.map((step, i) => (
+              <li key={step} className="flex items-start gap-3 rounded-2xl bg-card p-5 shadow-card">
+                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+                  {i + 1}
+                </span>
+                <span className="font-medium">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="px-4 py-14 lg:px-10">
+        <div className="mx-auto max-w-4xl text-center">
+          <h2 className="text-2xl font-bold sm:text-3xl">Made for every craft</h2>
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
+            {CRAFT_TYPES.map((c) => (
+              <span key={c} className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium">
+                {c}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="border-t border-border px-4 py-8 text-center text-sm text-muted-foreground lg:px-10">
+        <p>ARTISANLINK-AI · built to help artisans sell directly, at a fair price.</p>
+        <p className="mt-2">
+          <Link to="/help" className="font-semibold text-primary hover:underline">
+            Help &amp; guide
+          </Link>
+        </p>
+      </footer>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/login.tsx
+Lines: 101
+--------------------------------------------------------------------------------
+
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Logo } from "@/components/layout";
+import { useStore } from "@/lib/store";
+
+export const Route = createFileRoute("/login")({
+  head: () => ({
+    meta: [
+      { title: "Log in — ARTISANLINK-AI" },
+      { name: "description", content: "Log in to manage your craft products, prices and buyer requests." },
+      { property: "og:title", content: "Log in — ARTISANLINK-AI" },
+      { property: "og:description", content: "Log in to manage your craft products, prices and buyer requests." },
+    ],
+  }),
+  component: LoginPage,
+});
+
+function LoginPage() {
+  const { login } = useStore();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  function submit(value: string) {
+    setBusy(true);
+    const found = login(value);
+    setBusy(false);
+    if (!found) {
+      toast.error("We could not find that account. Please register first.");
+      return;
+    }
+    toast.success(`Welcome back, ${found.name}!`);
+    navigate({ to: found.role === "admin" ? "/admin" : "/dashboard" });
+  }
+
+  return (
+    <div className="flex min-h-screen flex-col bg-hero-gradient">
+      <div className="px-4 py-4 lg:px-10">
+        <Logo />
+      </div>
+      <div className="flex flex-1 items-center justify-center px-4 py-8">
+        <Card className="w-full max-w-md shadow-soft">
+          <CardHeader>
+            <CardTitle className="text-2xl">Log in</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-5">
+            <form
+              className="space-y-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                submit(email);
+              }}
+            >
+              <div className="space-y-2">
+                <Label htmlFor="email">Email or mobile-linked email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="h-12 text-base"
+                />
+              </div>
+              <Button type="submit" size="lg" className="w-full text-base" disabled={busy}>
+                {busy ? "Logging in..." : "Log in"}
+              </Button>
+            </form>
+
+            <div className="rounded-2xl bg-secondary/70 p-4 text-sm">
+              <p className="font-semibold">Demo accounts</p>
+              <p className="mt-1 text-muted-foreground">Use these to explore the app with sample data.</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Button variant="outline" size="sm" onClick={() => submit("demo@artisanlink.ai")}>
+                  Artisan demo
+                </Button>
+                <Button variant="outline" size="sm" onClick={() => submit("admin@artisanlink.ai")}>
+                  Admin demo
+                </Button>
+              </div>
+            </div>
+
+            <p className="text-center text-sm text-muted-foreground">
+              New here?{" "}
+              <Link to="/register" className="font-semibold text-primary hover:underline">
+                Create an account
+              </Link>
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/register.tsx
+Lines: 189
+--------------------------------------------------------------------------------
+
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Logo } from "@/components/layout";
+import { LanguageSelector } from "@/components/common";
+import { CRAFT_TYPES } from "@/lib/demo-data";
+import { useStore } from "@/lib/store";
+import type { Language } from "@/lib/types";
+
+export const Route = createFileRoute("/register")({
+  head: () => ({
+    meta: [
+      { title: "Create your artisan account — ARTISANLINK-AI" },
+      {
+        name: "description",
+        content: "Register as an artisan to list your craft, get fair prices and reach buyers directly.",
+      },
+      { property: "og:title", content: "Create your artisan account — ARTISANLINK-AI" },
+      {
+        property: "og:description",
+        content: "Register as an artisan to list your craft, get fair prices and reach buyers directly.",
+      },
+    ],
+  }),
+  component: RegisterPage,
+});
+
+function RegisterPage() {
+  const { register } = useStore();
+  const navigate = useNavigate();
+  const [step, setStep] = useState(1);
+  const [language, setLanguage] = useState<Language>("en");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    state: "",
+    district: "",
+    village: "",
+    craftType: CRAFT_TYPES[0] ?? "",
+    experience: "5",
+    contactPreference: "whatsapp" as "call" | "whatsapp" | "email",
+  });
+
+  const set = (k: keyof typeof form) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
+
+  function finish() {
+    if (!form.name.trim() || !form.email.trim()) {
+      toast.error("Please fill in your name and email.");
+      setStep(2);
+      return;
+    }
+    register({
+      ...form,
+      experience: Number(form.experience) || 0,
+      language,
+    });
+    toast.success("Your account is ready. Welcome!");
+    navigate({ to: "/dashboard" });
+  }
+
+  return (
+    <div className="flex min-h-screen flex-col bg-hero-gradient">
+      <div className="px-4 py-4 lg:px-10">
+        <Logo />
+      </div>
+      <div className="flex flex-1 items-start justify-center px-4 py-6">
+        <Card className="w-full max-w-2xl shadow-soft">
+          <CardHeader>
+            <CardTitle className="text-2xl">
+              {step === 1 ? "Choose your language" : step === 2 ? "About you" : "Your craft"}
+            </CardTitle>
+            <p className="text-sm text-muted-foreground">Step {step} of 3</p>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {step === 1 && <LanguageSelector value={language} onChange={setLanguage} />}
+
+            {step === 2 && (
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field label="Your name" value={form.name} onChange={set("name")} />
+                <Field label="Email" value={form.email} onChange={set("email")} type="email" />
+                <Field label="Mobile number" value={form.mobile} onChange={set("mobile")} />
+                <Field label="State" value={form.state} onChange={set("state")} />
+                <Field label="District" value={form.district} onChange={set("district")} />
+                <Field label="Village or town" value={form.village} onChange={set("village")} />
+              </div>
+            )}
+
+            {step === 3 && (
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-2 sm:col-span-2">
+                  <Label>Craft type</Label>
+                  <Select value={form.craftType} onValueChange={set("craftType")}>
+                    <SelectTrigger className="h-12 text-base">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {CRAFT_TYPES.map((c) => (
+                        <SelectItem key={c} value={c}>
+                          {c}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <Field
+                  label="Years of experience"
+                  value={form.experience}
+                  onChange={set("experience")}
+                  type="number"
+                />
+                <div className="space-y-2">
+                  <Label>How should buyers contact you?</Label>
+                  <Select value={form.contactPreference} onValueChange={set("contactPreference")}>
+                    <SelectTrigger className="h-12 text-base">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="whatsapp">WhatsApp</SelectItem>
+                      <SelectItem value="call">Phone call</SelectItem>
+                      <SelectItem value="email">Email</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            )}
+
+            <div className="flex flex-wrap justify-between gap-3">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => setStep((s) => Math.max(1, s - 1))}
+                disabled={step === 1}
+              >
+                Back
+              </Button>
+              {step < 3 ? (
+                <Button size="lg" onClick={() => setStep((s) => s + 1)}>
+                  Continue
+                </Button>
+              ) : (
+                <Button size="lg" onClick={finish}>
+                  Create my account
+                </Button>
+              )}
+            </div>
+
+            <p className="text-center text-sm text-muted-foreground">
+              Already registered?{" "}
+              <Link to="/login" className="font-semibold text-primary hover:underline">
+                Log in
+              </Link>
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+function Field({
+  label,
+  value,
+  onChange,
+  type = "text",
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+}) {
+  return (
+    <div className="space-y-2">
+      <Label>{label}</Label>
+      <Input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="h-12 text-base"
+      />
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/dashboard.tsx
+Lines: 154
+--------------------------------------------------------------------------------
+
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Inbox, Package, PlusCircle, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+import { EmptyState, StatCard } from "@/components/common";
+import { useStore } from "@/lib/store";
+
+export const Route = createFileRoute("/dashboard")({
+  head: () => ({
+    meta: [
+      { title: "My dashboard — ARTISANLINK-AI" },
+      { name: "description", content: "See your products, buyer requests and next steps at a glance." },
+      { property: "og:title", content: "My dashboard — ARTISANLINK-AI" },
+      { property: "og:description", content: "See your products, buyer requests and next steps at a glance." },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <Dashboard />
+    </Protected>
+  ),
+});
+
+function Dashboard() {
+  const { user, products, requests, buyers, notifications } = useStore();
+  const mine = products.filter((p) => p.artisanId === user?.id);
+  const myRequests = requests.filter((r) => r.artisanId === user?.id);
+  const newRequests = myRequests.filter((r) => r.status === "new" || r.status === "pending");
+
+  return (
+    <div className="mx-auto max-w-6xl">
+      <PageHeader
+        title={`Namaste, ${user?.name?.split(" ")[0] ?? "artisan"} 🙏`}
+        subtitle="Here is what is happening with your craft business today."
+        action={
+          <Button asChild size="lg">
+            <Link to="/products/add">
+              <PlusCircle className="mr-2 size-5" /> Add product
+            </Link>
+          </Button>
+        }
+      />
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard icon={<Package className="size-6 text-primary" />} label="My products" value={mine.length} hint={`${mine.filter((p) => p.published).length} published`} />
+        <StatCard icon={<Inbox className="size-6 text-primary" />} label="Buyer requests" value={myRequests.length} hint={`${newRequests.length} need your reply`} />
+        <StatCard icon={<Users className="size-6 text-primary" />} label="Buyers available" value={buyers.length} hint="Boutiques, exporters, hotels" />
+        <StatCard icon={<span>🔔</span>} label="Updates" value={notifications.filter((n) => !n.read).length} hint="Unread notifications" />
+      </div>
+
+      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <Card className="shadow-card">
+          <CardHeader className="flex-row items-center justify-between">
+            <CardTitle>Recent products</CardTitle>
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/products">View all</Link>
+            </Button>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {mine.length === 0 ? (
+              <EmptyState
+                title="No products yet"
+                body="Add your first craft and we will write the description for you."
+                action={
+                  <Button asChild>
+                    <Link to="/products/add">Add my first product</Link>
+                  </Button>
+                }
+              />
+            ) : (
+              mine.slice(0, 4).map((p) => (
+                <Link
+                  key={p.id}
+                  to="/products/$id"
+                  params={{ id: p.id }}
+                  className="flex items-center gap-3 rounded-2xl border border-border p-3 transition-colors hover:bg-secondary/60"
+                >
+                  {p.enhancedImage || p.originalImage ? (
+                    <img
+                      src={p.enhancedImage ?? p.originalImage}
+                      alt={p.name}
+                      loading="lazy"
+                      className="size-14 rounded-xl object-cover"
+                    />
+                  ) : (
+                    <span className="grid size-14 place-items-center rounded-xl bg-secondary text-2xl">🧺</span>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate font-semibold">{p.name}</p>
+                    <p className="text-sm text-muted-foreground">₹{p.price.toLocaleString("en-IN")}</p>
+                  </div>
+                  <Badge variant={p.published ? "default" : "secondary"}>
+                    {p.published ? "Published" : "Draft"}
+                  </Badge>
+                </Link>
+              ))
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-card">
+          <CardHeader className="flex-row items-center justify-between">
+            <CardTitle>Buyer requests</CardTitle>
+            <Button asChild variant="ghost" size="sm">
+              <Link to="/requests">View all</Link>
+            </Button>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {myRequests.length === 0 ? (
+              <EmptyState emoji="📨" title="No requests yet" body="Publish your products so buyers can find you." />
+            ) : (
+              myRequests.slice(0, 4).map((r) => {
+                const buyer = buyers.find((b) => b.id === r.buyerId);
+                const product = products.find((p) => p.id === r.productId);
+                return (
+                  <div key={r.id} className="rounded-2xl border border-border p-3">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="font-semibold">{buyer?.name ?? "Buyer"}</p>
+                      <Badge variant={r.status === "accepted" ? "default" : "secondary"}>{r.status}</Badge>
+                    </div>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {r.quantity} × {product?.name ?? "product"} at ₹{r.expectedPrice.toLocaleString("en-IN")}
+                    </p>
+                  </div>
+                );
+              })
+            )}
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="mt-6 shadow-card">
+        <CardHeader>
+          <CardTitle>Next steps for you</CardTitle>
+        </CardHeader>
+        <CardContent className="grid gap-3 sm:grid-cols-3">
+          <Button asChild variant="outline" size="lg" className="h-auto justify-start py-4">
+            <Link to="/products/add">📷 Add a new craft</Link>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="h-auto justify-start py-4">
+            <Link to="/buyers">🤝 Find matching buyers</Link>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="h-auto justify-start py-4">
+            <Link to="/help">📖 Learn how it works</Link>
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/products.index.tsx
+Lines: 158
+--------------------------------------------------------------------------------
+
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { PlusCircle, Search } from "lucide-react";
+import { useMemo, useState } from "react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+import { EmptyState } from "@/components/common";
+import { CATEGORIES } from "@/lib/demo-data";
+import { useStore } from "@/lib/store";
+
+export const Route = createFileRoute("/products/")({
+  head: () => ({
+    meta: [
+      { title: "My products — ARTISANLINK-AI" },
+      { name: "description", content: "Manage your craft catalogue: prices, photos, stories and publishing." },
+      { property: "og:title", content: "My products — ARTISANLINK-AI" },
+      { property: "og:description", content: "Manage your craft catalogue: prices, photos, stories and publishing." },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <ProductsPage />
+    </Protected>
+  ),
+});
+
+function ProductsPage() {
+  const { user, products, updateProduct, deleteProduct } = useStore();
+  const [q, setQ] = useState("");
+  const [category, setCategory] = useState("all");
+
+  const mine = useMemo(
+    () =>
+      products
+        .filter((p) => p.artisanId === user?.id)
+        .filter((p) => (category === "all" ? true : p.category === category))
+        .filter((p) => p.name.toLowerCase().includes(q.trim().toLowerCase())),
+    [products, user?.id, category, q],
+  );
+
+  return (
+    <div className="mx-auto max-w-6xl">
+      <PageHeader
+        title="My products"
+        subtitle="Everything you make, in one place."
+        action={
+          <Button asChild size="lg">
+            <Link to="/products/add">
+              <PlusCircle className="mr-2 size-5" /> Add product
+            </Link>
+          </Button>
+        }
+      />
+
+      <div className="mb-6 flex flex-wrap gap-3">
+        <div className="relative min-w-[220px] flex-1">
+          <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search my products"
+            className="h-12 pl-9 text-base"
+          />
+        </div>
+        <Select value={category} onValueChange={setCategory}>
+          <SelectTrigger className="h-12 w-full text-base sm:w-56">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All categories</SelectItem>
+            {CATEGORIES.map((c) => (
+              <SelectItem key={c} value={c}>
+                {c}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {mine.length === 0 ? (
+        <EmptyState
+          title="No products found"
+          body="Add a craft product, or clear the search filters."
+          action={
+            <Button asChild>
+              <Link to="/products/add">Add product</Link>
+            </Button>
+          }
+        />
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {mine.map((p) => (
+            <Card key={p.id} className="overflow-hidden shadow-card">
+              <Link to="/products/$id" params={{ id: p.id }} className="block">
+                {p.enhancedImage || p.originalImage ? (
+                  <img
+                    src={p.enhancedImage ?? p.originalImage}
+                    alt={p.name}
+                    loading="lazy"
+                    className="h-44 w-full object-cover"
+                  />
+                ) : (
+                  <div className="grid h-44 w-full place-items-center bg-secondary text-5xl">🧺</div>
+                )}
+              </Link>
+              <CardContent className="space-y-3 p-5">
+                <div className="flex items-start justify-between gap-2">
+                  <Link to="/products/$id" params={{ id: p.id }} className="font-semibold hover:underline">
+                    {p.name}
+                  </Link>
+                  <Badge variant={p.published ? "default" : "secondary"}>
+                    {p.published ? "Published" : "Draft"}
+                  </Badge>
+                </div>
+                <p className="line-clamp-2 text-sm text-muted-foreground">{p.shortDescription}</p>
+                <p className="font-bold">₹{p.price.toLocaleString("en-IN")}</p>
+                <div className="flex flex-wrap gap-2">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => {
+                      updateProduct(p.id, { published: !p.published });
+                      toast.success(p.published ? "Moved to drafts." : "Product published.");
+                    }}
+                  >
+                    {p.published ? "Unpublish" : "Publish"}
+                  </Button>
+                  <Button asChild size="sm" variant="outline">
+                    <Link to="/products/$id" params={{ id: p.id }}>
+                      Open
+                    </Link>
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="text-destructive"
+                    onClick={() => {
+                      deleteProduct(p.id);
+                      toast.success("Product removed.");
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/products.add.tsx
+Lines: 409
+--------------------------------------------------------------------------------
+
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { Mic, MicOff, Sparkles, Volume2, Wand2 } from "lucide-react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+import { AiNote, LoadingSpinner } from "@/components/common";
+import { CATEGORIES, CRAFT_TYPES, MATERIALS } from "@/lib/demo-data";
+import { generateDescription, generateStory, suggestPrice, type PriceResult } from "@/lib/ai";
+import { compressImage, enhanceImage } from "@/lib/image";
+import { useSpeechInput, speak } from "@/hooks/use-speech";
+import { uid, useStore } from "@/lib/store";
+import type { Product } from "@/lib/types";
+
+export const Route = createFileRoute("/products/add")({
+  head: () => ({
+    meta: [
+      { title: "Add a product — ARTISANLINK-AI" },
+      {
+        name: "description",
+        content: "Add your craft with a photo and a few words. We write the description and suggest a fair price.",
+      },
+      { property: "og:title", content: "Add a product — ARTISANLINK-AI" },
+      {
+        property: "og:description",
+        content: "Add your craft with a photo and a few words. We write the description and suggest a fair price.",
+      },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <AddProduct />
+    </Protected>
+  ),
+});
+
+function AddProduct() {
+  const { user, language, addProduct, pushNotification } = useStore();
+  const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [notes, setNotes] = useState("");
+  const [material, setMaterial] = useState(MATERIALS[0] ?? "");
+  const [category, setCategory] = useState(CATEGORIES[0] ?? "");
+  const [craftType, setCraftType] = useState(user?.craftType ?? CRAFT_TYPES[0] ?? "");
+  const [technique, setTechnique] = useState("");
+  const [availability, setAvailability] = useState<Product["availability"]>("available");
+
+  const [image, setImage] = useState<string>();
+  const [enhanced, setEnhanced] = useState<string>();
+  const [imageBusy, setImageBusy] = useState(false);
+
+  const [aiBusy, setAiBusy] = useState(false);
+  const [demoText, setDemoText] = useState(false);
+  const [shortDescription, setShortDescription] = useState("");
+  const [description, setDescription] = useState("");
+  const [keywords, setKeywords] = useState<string[]>([]);
+  const [story, setStory] = useState("");
+  const [storyBusy, setStoryBusy] = useState(false);
+
+  const [costs, setCosts] = useState({ materialCost: "", labourCost: "", otherCost: "", hours: "", quantity: "1" });
+  const [price, setPrice] = useState("");
+  const [suggestion, setSuggestion] = useState<PriceResult>();
+
+  const speech = useSpeechInput(language, (t) => setNotes((n) => (n ? `${n} ${t}` : t)));
+
+  async function onFile(file?: File) {
+    if (!file) return;
+    setImageBusy(true);
+    try {
+      const compressed = await compressImage(file);
+      setImage(compressed);
+      setEnhanced(await enhanceImage(compressed));
+    } catch {
+      toast.error("We could not read that photo. Please try another one.");
+    } finally {
+      setImageBusy(false);
+    }
+  }
+
+  async function runAi() {
+    if (!name.trim() && !notes.trim()) {
+      toast.error("Please write or say a few words about your product first.");
+      return;
+    }
+    setAiBusy(true);
+    try {
+      const res = await generateDescription(
+        {
+          name,
+          notes,
+          material,
+          category,
+          technique: technique || craftType,
+          region: [user?.village, user?.district, user?.state].filter(Boolean).join(", "),
+        },
+        language,
+      );
+      if (res.title && !name.trim()) setName(res.title);
+      setShortDescription(res.shortDescription ?? "");
+      setDescription(res.description ?? "");
+      setKeywords(res.keywords ?? []);
+      if (res.category) setCategory(res.category);
+      setDemoText(Boolean(res.demo));
+      toast.success("Description ready. You can edit it freely.");
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setAiBusy(false);
+    }
+  }
+
+  async function runStory() {
+    setStoryBusy(true);
+    try {
+      const res = await generateStory(
+        {
+          notes,
+          name,
+          technique: technique || craftType,
+          region: [user?.village, user?.district, user?.state].filter(Boolean).join(", "),
+        },
+        language,
+      );
+      setStory(res.story ?? "");
+    } catch {
+      toast.error("Could not write the story. Please try again.");
+    } finally {
+      setStoryBusy(false);
+    }
+  }
+
+  function runPrice() {
+    const result = suggestPrice({
+      materialCost: Number(costs.materialCost) || 0,
+      labourCost: Number(costs.labourCost) || 0,
+      otherCost: Number(costs.otherCost) || 0,
+      hours: Number(costs.hours) || 0,
+      quantity: Number(costs.quantity) || 1,
+      category,
+    });
+    setSuggestion(result);
+    setPrice(String(result.base));
+  }
+
+  function save(published: boolean) {
+    if (!user) return;
+    if (!name.trim()) {
+      toast.error("Please give your product a name.");
+      return;
+    }
+    const finalPrice = Number(price) || suggestion?.base || 0;
+    const product: Product = {
+      id: uid("prd"),
+      artisanId: user.id,
+      name: name.trim(),
+      shortDescription: shortDescription || `Handmade ${material.toLowerCase()} ${name.toLowerCase()}.`,
+      description: description || notes,
+      originalDescription: notes,
+      category,
+      material,
+      craftType,
+      technique: technique || craftType,
+      location: [user.village, user.district, user.state].filter(Boolean).join(", "),
+      ...(image ? { originalImage: image } : {}),
+      ...(enhanced ? { enhancedImage: enhanced } : {}),
+      priceMin: suggestion?.min ?? Math.round(finalPrice * 0.9),
+      priceMax: suggestion?.max ?? Math.round(finalPrice * 1.2),
+      price: finalPrice,
+      availability,
+      craftStory: story,
+      keywords,
+      published,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    addProduct(product);
+    pushNotification(
+      published ? "Product published" : "Draft saved",
+      `${product.name} was ${published ? "published to your catalogue" : "saved as a draft"}.`,
+    );
+    toast.success(published ? "Product published." : "Draft saved.");
+    navigate({ to: "/products/$id", params: { id: product.id } });
+  }
+
+  return (
+    <div className="mx-auto max-w-3xl">
+      <PageHeader title="Add a product" subtitle="Four short steps. You can speak instead of typing." />
+
+      <div className="space-y-6">
+        <Card className="shadow-card">
+          <CardHeader>
+            <CardTitle>1. Photo of your craft</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Input
+              type="file"
+              accept="image/*"
+              className="h-12 text-base"
+              onChange={(e) => onFile(e.target.files?.[0])}
+            />
+            {imageBusy && <LoadingSpinner label="Preparing your photo..." />}
+            {image && (
+              <div className="grid gap-4 sm:grid-cols-2">
+                <figure>
+                  <img src={image} alt="Your original photo" loading="lazy" className="h-48 w-full rounded-2xl object-cover" />
+                  <figcaption className="mt-2 text-sm text-muted-foreground">Your photo</figcaption>
+                </figure>
+                <figure>
+                  <img src={enhanced ?? image} alt="Cleaned up photo" loading="lazy" className="h-48 w-full rounded-2xl object-cover" />
+                  <figcaption className="mt-2 text-sm text-muted-foreground">Cleaned up (brighter, clearer)</figcaption>
+                </figure>
+              </div>
+            )}
+            <AiNote>Photos are made smaller before saving, so the app stays fast on slow internet.</AiNote>
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-card">
+          <CardHeader>
+            <CardTitle>2. Tell us about it</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label>Product name</Label>
+              <Input value={name} onChange={(e) => setName(e.target.value)} className="h-12 text-base" placeholder="Bamboo storage basket" />
+            </div>
+            <div className="space-y-2">
+              <Label>In your own words</Label>
+              <Textarea
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                rows={4}
+                className="text-base"
+                placeholder="Say how you make it, what it is used for, how long it takes..."
+              />
+              <div className="flex flex-wrap gap-2">
+                {speech.supported && (
+                  <Button
+                    type="button"
+                    variant={speech.listening ? "destructive" : "outline"}
+                    onClick={() => (speech.listening ? speech.stop() : speech.start())}
+                  >
+                    {speech.listening ? <MicOff className="mr-2 size-4" /> : <Mic className="mr-2 size-4" />}
+                    {speech.listening ? "Stop" : "Speak"}
+                  </Button>
+                )}
+                {notes && (
+                  <Button type="button" variant="ghost" onClick={() => speak(notes, language)}>
+                    <Volume2 className="mr-2 size-4" /> Listen
+                  </Button>
+                )}
+              </div>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Picker label="Material" value={material} onChange={setMaterial} options={MATERIALS} />
+              <Picker label="Category" value={category} onChange={setCategory} options={CATEGORIES} />
+              <Picker label="Craft type" value={craftType} onChange={setCraftType} options={CRAFT_TYPES} />
+              <div className="space-y-2">
+                <Label>Technique (optional)</Label>
+                <Input value={technique} onChange={(e) => setTechnique(e.target.value)} className="h-12 text-base" />
+              </div>
+            </div>
+            <Button size="lg" onClick={runAi} disabled={aiBusy} className="w-full text-base">
+              <Sparkles className="mr-2 size-5" />
+              {aiBusy ? "Writing your description..." : "Write my description"}
+            </Button>
+            {aiBusy && <LoadingSpinner label="Working on your listing..." />}
+            {demoText && <AiNote>This text was created with the built-in sample writer (demo mode).</AiNote>}
+            {(shortDescription || description) && (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label>Short description</Label>
+                  <Textarea value={shortDescription} onChange={(e) => setShortDescription(e.target.value)} rows={2} className="text-base" />
+                </div>
+                <div className="space-y-2">
+                  <Label>Full description</Label>
+                  <Textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={6} className="text-base" />
+                </div>
+                {keywords.length > 0 && (
+                  <p className="text-sm text-muted-foreground">Search words: {keywords.join(", ")}</p>
+                )}
+              </div>
+            )}
+            <div className="space-y-2">
+              <Label>Craft story</Label>
+              <Textarea value={story} onChange={(e) => setStory(e.target.value)} rows={4} className="text-base" />
+              <Button type="button" variant="outline" onClick={runStory} disabled={storyBusy}>
+                <Wand2 className="mr-2 size-4" /> {storyBusy ? "Writing..." : "Write my craft story"}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-card">
+          <CardHeader>
+            <CardTitle>3. Fair price help</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <NumberField label="Material cost (₹)" value={costs.materialCost} onChange={(v) => setCosts({ ...costs, materialCost: v })} />
+              <NumberField label="Your making charge (₹)" value={costs.labourCost} onChange={(v) => setCosts({ ...costs, labourCost: v })} />
+              <NumberField label="Other cost — transport, packing (₹)" value={costs.otherCost} onChange={(v) => setCosts({ ...costs, otherCost: v })} />
+              <NumberField label="Hours of work" value={costs.hours} onChange={(v) => setCosts({ ...costs, hours: v })} />
+              <NumberField label="Quantity you can make" value={costs.quantity} onChange={(v) => setCosts({ ...costs, quantity: v })} />
+            </div>
+            <Button variant="outline" onClick={runPrice}>
+              Suggest a fair price
+            </Button>
+            {suggestion && (
+              <div className="space-y-3 rounded-2xl bg-secondary/60 p-4">
+                <p className="text-lg font-bold">
+                  Fair range: ₹{suggestion.min.toLocaleString("en-IN")} – ₹{suggestion.max.toLocaleString("en-IN")}
+                </p>
+                <ul className="space-y-1 text-sm">
+                  {suggestion.reasons.map((r) => (
+                    <li key={r}>• {r}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="grid gap-4 sm:grid-cols-2">
+              <NumberField label="Your selling price (₹)" value={price} onChange={setPrice} />
+              <div className="space-y-2">
+                <Label>Availability</Label>
+                <Select value={availability} onValueChange={(v) => setAvailability(v as Product["availability"])}>
+                  <SelectTrigger className="h-12 text-base">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="available">Available now</SelectItem>
+                    <SelectItem value="made-to-order">Made to order</SelectItem>
+                    <SelectItem value="sold-out">Sold out</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-card">
+          <CardHeader>
+            <CardTitle>4. Save</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-3">
+            <Button size="lg" onClick={() => save(true)}>
+              Publish product
+            </Button>
+            <Button size="lg" variant="outline" onClick={() => save(false)}>
+              Save as draft
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
+function Picker({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+}) {
+  return (
+    <div className="space-y-2">
+      <Label>{label}</Label>
+      <Select value={value} onValueChange={onChange}>
+        <SelectTrigger className="h-12 text-base">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          {options.map((o) => (
+            <SelectItem key={o} value={o}>
+              {o}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}
+
+function NumberField({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
+  return (
+    <div className="space-y-2">
+      <Label>{label}</Label>
+      <Input
+        type="number"
+        min={0}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="h-12 text-base"
+      />
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/products.$id.tsx
+Lines: 210
+--------------------------------------------------------------------------------
+
+import { createFileRoute, Link, useParams } from "@tanstack/react-router";
+import { useState } from "react";
+import { Languages, Volume2 } from "lucide-react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { LANGUAGES } from "@/lib/types";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+import { AiNote, EmptyState } from "@/components/common";
+import { matchBuyers, translateText } from "@/lib/ai";
+import { speak } from "@/hooks/use-speech";
+import { useStore } from "@/lib/store";
+import type { Language } from "@/lib/types";
+
+export const Route = createFileRoute("/products/$id")({
+  head: () => ({
+    meta: [
+      { title: "Product details — ARTISANLINK-AI" },
+      { name: "description", content: "Edit your craft product, translate its description and see matching buyers." },
+      { property: "og:title", content: "Product details — ARTISANLINK-AI" },
+      { property: "og:description", content: "Edit your craft product, translate its description and see matching buyers." },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <ProductDetail />
+    </Protected>
+  ),
+});
+
+function ProductDetail() {
+  const { id } = useParams({ from: "/products/$id" });
+  const { products, buyers, language, updateProduct } = useStore();
+  const product = products.find((p) => p.id === id);
+  const [translated, setTranslated] = useState<string>();
+  const [busy, setBusy] = useState(false);
+
+  if (!product) {
+    return (
+      <EmptyState
+        title="Product not found"
+        body="It may have been deleted."
+        action={
+          <Button asChild>
+            <Link to="/products">Back to my products</Link>
+          </Button>
+        }
+      />
+    );
+  }
+
+  const matches = matchBuyers(product, buyers).slice(0, 3);
+
+  async function translate(lang: Language) {
+    if (!product) return;
+    setBusy(true);
+    try {
+      const res = await translateText(product.description, lang);
+      setTranslated(res.text);
+    } catch {
+      toast.error("Translation failed. Please try again.");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="mx-auto max-w-5xl">
+      <PageHeader
+        title={product.name}
+        subtitle={`${product.category} · ${product.location}`}
+        action={
+          <div className="flex flex-wrap gap-2">
+            <Button asChild variant="outline">
+              <Link to="/products/$id/passport" params={{ id: product.id }}>
+                Craft passport
+              </Link>
+            </Button>
+            <Button
+              onClick={() => {
+                updateProduct(product.id, { published: !product.published });
+                toast.success(product.published ? "Moved to drafts." : "Product published.");
+              }}
+            >
+              {product.published ? "Unpublish" : "Publish"}
+            </Button>
+          </div>
+        }
+      />
+
+      <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+        <Card className="overflow-hidden shadow-card">
+          {product.enhancedImage || product.originalImage ? (
+            <img
+              src={product.enhancedImage ?? product.originalImage}
+              alt={product.name}
+              loading="lazy"
+              className="h-72 w-full object-cover"
+            />
+          ) : (
+            <div className="grid h-72 place-items-center bg-secondary text-6xl">🧺</div>
+          )}
+          <CardContent className="space-y-4 p-6">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant={product.published ? "default" : "secondary"}>
+                {product.published ? "Published" : "Draft"}
+              </Badge>
+              <Badge variant="outline" className="capitalize">
+                {product.availability.replace("-", " ")}
+              </Badge>
+              <Badge variant="secondary">{product.material}</Badge>
+            </div>
+            <p className="text-2xl font-bold">₹{product.price.toLocaleString("en-IN")}</p>
+            <p className="text-sm text-muted-foreground">
+              Fair range ₹{product.priceMin.toLocaleString("en-IN")} – ₹{product.priceMax.toLocaleString("en-IN")}
+            </p>
+            <p>{product.description}</p>
+            <Button variant="ghost" onClick={() => speak(product.description, language)}>
+              <Volume2 className="mr-2 size-4" /> Listen to this
+            </Button>
+            {product.craftStory && (
+              <div className="rounded-2xl bg-secondary/60 p-4">
+                <p className="font-semibold">Craft story</p>
+                <p className="mt-1 text-sm">{product.craftStory}</p>
+              </div>
+            )}
+            {product.keywords.length > 0 && (
+              <p className="text-sm text-muted-foreground">Search words: {product.keywords.join(", ")}</p>
+            )}
+          </CardContent>
+        </Card>
+
+        <div className="space-y-6">
+          <Card className="shadow-card">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Languages className="size-5 text-primary" /> Translate description
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex flex-wrap gap-2">
+                {LANGUAGES.map((l) => (
+                  <Button key={l.code} size="sm" variant="outline" disabled={busy} onClick={() => translate(l.code)}>
+                    {l.native}
+                  </Button>
+                ))}
+              </div>
+              {busy && <p className="text-sm text-muted-foreground">Translating...</p>}
+              {translated && <div className="rounded-2xl bg-secondary/60 p-4 text-sm">{translated}</div>}
+              <AiNote>Translations keep your meaning simple and honest — nothing is invented.</AiNote>
+            </CardContent>
+          </Card>
+
+          <Card className="shadow-card">
+            <CardHeader>
+              <CardTitle>Quick edit</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label>Selling price (₹)</Label>
+                <Input
+                  type="number"
+                  defaultValue={product.price}
+                  className="h-12 text-base"
+                  onBlur={(e) => updateProduct(product.id, { price: Number(e.target.value) || product.price })}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label>Short description</Label>
+                <Textarea
+                  defaultValue={product.shortDescription}
+                  rows={3}
+                  className="text-base"
+                  onBlur={(e) => updateProduct(product.id, { shortDescription: e.target.value })}
+                />
+              </div>
+              <p className="text-sm text-muted-foreground">Changes are saved when you tap outside the box.</p>
+            </CardContent>
+          </Card>
+
+          <Card className="shadow-card">
+            <CardHeader>
+              <CardTitle>Top buyer matches</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {matches.map(({ buyer, score }) => (
+                <div key={buyer.id} className="flex items-center justify-between gap-3 rounded-2xl border border-border p-3">
+                  <div className="min-w-0">
+                    <p className="truncate font-semibold">{buyer.name}</p>
+                    <p className="text-sm text-muted-foreground">{buyer.location}</p>
+                  </div>
+                  <Badge>{score}%</Badge>
+                </div>
+              ))}
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/buyers">See all buyers</Link>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/products.$id.passport.tsx
+Lines: 124
+--------------------------------------------------------------------------------
+
+import { createFileRoute, Link, useParams } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Protected } from "@/components/protected";
+import { EmptyState } from "@/components/common";
+import { useStore } from "@/lib/store";
+
+export const Route = createFileRoute("/products/$id/passport")({
+  head: () => ({
+    meta: [
+      { title: "Craft passport — ARTISANLINK-AI" },
+      {
+        name: "description",
+        content: "A shareable card showing who made this craft, where, how, and at what fair price.",
+      },
+      { property: "og:title", content: "Craft passport — ARTISANLINK-AI" },
+      {
+        property: "og:description",
+        content: "A shareable card showing who made this craft, where, how, and at what fair price.",
+      },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <Passport />
+    </Protected>
+  ),
+});
+
+function Passport() {
+  const { id } = useParams({ from: "/products/$id/passport" });
+  const { products, artisans } = useStore();
+  const product = products.find((p) => p.id === id);
+  const artisan = artisans.find((a) => a.id === product?.artisanId);
+
+  if (!product) {
+    return (
+      <EmptyState
+        title="Product not found"
+        action={
+          <Button asChild>
+            <Link to="/products">Back to my products</Link>
+          </Button>
+        }
+      />
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-2xl">
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-2xl font-bold sm:text-3xl">Craft passport</h1>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => window.print()}>
+            Print / save
+          </Button>
+          <Button asChild variant="ghost">
+            <Link to="/products/$id" params={{ id: product.id }}>
+              Back to product
+            </Link>
+          </Button>
+        </div>
+      </div>
+
+      <Card className="overflow-hidden shadow-soft">
+        <div className="bg-primary-gradient px-6 py-5 text-primary-foreground">
+          <p className="text-sm font-semibold uppercase tracking-wide opacity-90">Certificate of handmade origin</p>
+          <h2 className="mt-1 text-2xl font-bold">{product.name}</h2>
+        </div>
+        {(product.enhancedImage || product.originalImage) && (
+          <img
+            src={product.enhancedImage ?? product.originalImage}
+            alt={product.name}
+            loading="lazy"
+            className="h-60 w-full object-cover"
+          />
+        )}
+        <CardContent className="space-y-5 p-6">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Row label="Made by" value={artisan?.name ?? "Artisan"} />
+            <Row label="Craft" value={product.craftType} />
+            <Row label="Made in" value={product.location} />
+            <Row label="Material" value={product.material} />
+            <Row label="Technique" value={product.technique} />
+            <Row label="Experience" value={`${artisan?.experience ?? 0} years`} />
+            <Row label="Fair price" value={`₹${product.price.toLocaleString("en-IN")}`} />
+            <Row
+              label="Fair range"
+              value={`₹${product.priceMin.toLocaleString("en-IN")} – ₹${product.priceMax.toLocaleString("en-IN")}`}
+            />
+          </div>
+
+          {product.craftStory && (
+            <div className="rounded-2xl bg-secondary/60 p-4">
+              <p className="font-semibold">The story behind it</p>
+              <p className="mt-1 text-sm">{product.craftStory}</p>
+            </div>
+          )}
+
+          <div className="flex flex-wrap gap-2">
+            <Badge>100% handmade</Badge>
+            <Badge variant="secondary">Direct from the maker</Badge>
+            {artisan?.verified && <Badge variant="outline">Verified artisan</Badge>}
+          </div>
+
+          <p className="text-xs text-muted-foreground">
+            This passport lists only the details provided by the artisan. Nothing here is invented.
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+function Row({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <p className="text-sm text-muted-foreground">{label}</p>
+      <p className="font-semibold">{value}</p>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/buyers.tsx
+Lines: 152
+--------------------------------------------------------------------------------
+
+import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Progress } from "@/components/ui/progress";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+import { EmptyState } from "@/components/common";
+import { matchBuyers } from "@/lib/ai";
+import { uid, useStore } from "@/lib/store";
+
+export const Route = createFileRoute("/buyers")({
+  head: () => ({
+    meta: [
+      { title: "Find buyers — ARTISANLINK-AI" },
+      {
+        name: "description",
+        content: "See boutiques, exporters, hotels and gift buyers matched to your craft products.",
+      },
+      { property: "og:title", content: "Find buyers — ARTISANLINK-AI" },
+      {
+        property: "og:description",
+        content: "See boutiques, exporters, hotels and gift buyers matched to your craft products.",
+      },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <BuyersPage />
+    </Protected>
+  ),
+});
+
+function BuyersPage() {
+  const { user, products, buyers, addRequest, pushNotification } = useStore();
+  const mine = products.filter((p) => p.artisanId === user?.id);
+  const [productId, setProductId] = useState(mine[0]?.id ?? "");
+  const product = mine.find((p) => p.id === productId) ?? mine[0];
+
+  const matches = useMemo(() => (product ? matchBuyers(product, buyers) : []), [product, buyers]);
+
+  if (mine.length === 0) {
+    return (
+      <div className="mx-auto max-w-4xl">
+        <PageHeader title="Find buyers" />
+        <EmptyState
+          emoji="🤝"
+          title="Add a product first"
+          body="Once you add a craft product, we can show you the buyers who want it."
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-auto max-w-5xl">
+      <PageHeader
+        title="Find buyers"
+        subtitle="Buyers are ranked by how well they match your product, price and location."
+      />
+
+      <div className="mb-6 max-w-md">
+        <Select value={product?.id ?? ""} onValueChange={setProductId}>
+          <SelectTrigger className="h-12 text-base">
+            <SelectValue placeholder="Choose a product" />
+          </SelectTrigger>
+          <SelectContent>
+            {mine.map((p) => (
+              <SelectItem key={p.id} value={p.id}>
+                {p.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="grid gap-4">
+        {matches.map(({ buyer, score, reasons }) => (
+          <Card key={buyer.id} className="shadow-card">
+            <CardHeader className="flex-row flex-wrap items-start justify-between gap-3">
+              <div>
+                <CardTitle>{buyer.name}</CardTitle>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {buyer.category} · {buyer.location}
+                </p>
+              </div>
+              <div className="min-w-[140px]">
+                <div className="flex items-center justify-between text-sm font-semibold">
+                  <span>Match</span>
+                  <span>{score}%</span>
+                </div>
+                <Progress value={score} className="mt-1" />
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-muted-foreground">{buyer.about}</p>
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="secondary">Wants {buyer.quantity}</Badge>
+                <Badge variant="secondary">
+                  Budget ₹{buyer.budgetMin.toLocaleString("en-IN")}–₹{buyer.budgetMax.toLocaleString("en-IN")}
+                </Badge>
+                {buyer.materials.map((m) => (
+                  <Badge key={m} variant="outline">
+                    {m}
+                  </Badge>
+                ))}
+              </div>
+              <ul className="space-y-1 text-sm">
+                {reasons.map((r) => (
+                  <li key={r} className="flex gap-2">
+                    <span aria-hidden>•</span>
+                    <span>{r}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  onClick={() => {
+                    if (!product || !user) return;
+                    addRequest({
+                      id: uid("req"),
+                      buyerId: buyer.id,
+                      artisanId: user.id,
+                      productId: product.id,
+                      quantity: 50,
+                      expectedPrice: product.price,
+                      deliveryLocation: buyer.location,
+                      message: `You sent an introduction about "${product.name}" to ${buyer.name}.`,
+                      status: "pending",
+                      createdAt: new Date().toISOString(),
+                    });
+                    pushNotification("Introduction sent", `Your product was shared with ${buyer.name}.`);
+                    toast.success(`Introduction sent to ${buyer.name}.`);
+                  }}
+                >
+                  Send my product details
+                </Button>
+                <Button variant="outline" asChild>
+                  <a href={`mailto:${buyer.contact}`}>Contact directly</a>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/requests.tsx
+Lines: 128
+--------------------------------------------------------------------------------
+
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+import { EmptyState } from "@/components/common";
+import { useStore } from "@/lib/store";
+
+export const Route = createFileRoute("/requests")({
+  head: () => ({
+    meta: [
+      { title: "Buyer requests — ARTISANLINK-AI" },
+      { name: "description", content: "Read and reply to order enquiries from buyers for your craft products." },
+      { property: "og:title", content: "Buyer requests — ARTISANLINK-AI" },
+      { property: "og:description", content: "Read and reply to order enquiries from buyers for your craft products." },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <RequestsPage />
+    </Protected>
+  ),
+});
+
+const TABS = ["all", "new", "pending", "accepted", "rejected"] as const;
+
+function RequestsPage() {
+  const { user, requests, buyers, products, updateRequest, pushNotification } = useStore();
+  const [tab, setTab] = useState<string>("all");
+  const mine = requests
+    .filter((r) => r.artisanId === user?.id)
+    .filter((r) => (tab === "all" ? true : r.status === tab));
+
+  return (
+    <div className="mx-auto max-w-4xl">
+      <PageHeader title="Buyer requests" subtitle="Accept the orders you can make, and decline the rest politely." />
+
+      <Tabs value={tab} onValueChange={setTab} className="mb-6">
+        <TabsList className="flex-wrap">
+          {TABS.map((t) => (
+            <TabsTrigger key={t} value={t} className="capitalize">
+              {t}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
+
+      {mine.length === 0 ? (
+        <EmptyState emoji="📨" title="No requests here" body="New buyer enquiries will appear on this page." />
+      ) : (
+        <div className="grid gap-4">
+          {mine.map((r) => {
+            const buyer = buyers.find((b) => b.id === r.buyerId);
+            const product = products.find((p) => p.id === r.productId);
+            const total = r.quantity * r.expectedPrice;
+            return (
+              <Card key={r.id} className="shadow-card">
+                <CardHeader className="flex-row flex-wrap items-start justify-between gap-2">
+                  <div>
+                    <CardTitle>{buyer?.name ?? "Buyer"}</CardTitle>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {product?.name ?? "Product"} · deliver to {r.deliveryLocation}
+                    </p>
+                  </div>
+                  <Badge
+                    variant={r.status === "accepted" ? "default" : r.status === "rejected" ? "destructive" : "secondary"}
+                    className="capitalize"
+                  >
+                    {r.status}
+                  </Badge>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <p>{r.message}</p>
+                  <div className="grid gap-2 rounded-2xl bg-secondary/60 p-4 text-sm sm:grid-cols-3">
+                    <p>
+                      <span className="text-muted-foreground">Quantity: </span>
+                      <span className="font-semibold">{r.quantity}</span>
+                    </p>
+                    <p>
+                      <span className="text-muted-foreground">Price offered: </span>
+                      <span className="font-semibold">₹{r.expectedPrice.toLocaleString("en-IN")}</span>
+                    </p>
+                    <p>
+                      <span className="text-muted-foreground">Order value: </span>
+                      <span className="font-semibold">₹{total.toLocaleString("en-IN")}</span>
+                    </p>
+                  </div>
+                  {r.status !== "accepted" && r.status !== "rejected" && (
+                    <div className="flex flex-wrap gap-2">
+                      <Button
+                        onClick={() => {
+                          updateRequest(r.id, { status: "accepted" });
+                          pushNotification("Order accepted", `You accepted the order from ${buyer?.name ?? "a buyer"}.`);
+                          toast.success("Order accepted. The buyer will be informed.");
+                        }}
+                      >
+                        Accept order
+                      </Button>
+                      <Button
+                        variant="outline"
+                        onClick={() => {
+                          updateRequest(r.id, { status: "rejected" });
+                          toast.success("Request declined.");
+                        }}
+                      >
+                        Decline
+                      </Button>
+                      {buyer && (
+                        <Button variant="ghost" asChild>
+                          <a href={`mailto:${buyer.contact}`}>Ask a question</a>
+                        </Button>
+                      )}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/profile.tsx
+Lines: 188
+--------------------------------------------------------------------------------
+
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+import { CRAFT_TYPES } from "@/lib/demo-data";
+import { compressImage } from "@/lib/image";
+import { useStore } from "@/lib/store";
+
+export const Route = createFileRoute("/profile")({
+  head: () => ({
+    meta: [
+      { title: "My profile — ARTISANLINK-AI" },
+      { name: "description", content: "Update your artisan profile, craft details and how buyers should reach you." },
+      { property: "og:title", content: "My profile — ARTISANLINK-AI" },
+      { property: "og:description", content: "Update your artisan profile, craft details and how buyers should reach you." },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <ProfilePage />
+    </Protected>
+  ),
+});
+
+function ProfilePage() {
+  const { user, updateArtisan, products } = useStore();
+  const [form, setForm] = useState(() => ({
+    name: user?.name ?? "",
+    email: user?.email ?? "",
+    mobile: user?.mobile ?? "",
+    state: user?.state ?? "",
+    district: user?.district ?? "",
+    village: user?.village ?? "",
+    craftType: user?.craftType ?? CRAFT_TYPES[0] ?? "",
+    experience: String(user?.experience ?? 0),
+    craftStory: user?.craftStory ?? "",
+    contactPreference: user?.contactPreference ?? "whatsapp",
+  }));
+
+  if (!user) return null;
+  const mine = products.filter((p) => p.artisanId === user.id);
+
+  return (
+    <div className="mx-auto max-w-3xl">
+      <PageHeader title="My profile" subtitle="Buyers see this information when they view your craft." />
+
+      <Card className="mb-6 shadow-card">
+        <CardContent className="flex flex-wrap items-center gap-4 p-6">
+          {user.photo ? (
+            <img src={user.photo} alt={user.name} className="size-20 rounded-full object-cover" />
+          ) : (
+            <span className="grid size-20 place-items-center rounded-full bg-primary text-2xl font-bold text-primary-foreground">
+              {user.name.charAt(0)}
+            </span>
+          )}
+          <div className="min-w-0">
+            <p className="text-xl font-bold">{user.name}</p>
+            <p className="text-muted-foreground">
+              {user.craftType} · {mine.length} product{mine.length === 1 ? "" : "s"}
+            </p>
+            <div className="mt-2 flex gap-2">
+              {user.verified && <Badge>Verified artisan</Badge>}
+              <Badge variant="secondary">{user.experience} years of experience</Badge>
+            </div>
+          </div>
+          <div className="w-full sm:w-auto">
+            <Label htmlFor="photo" className="text-sm">
+              Change photo
+            </Label>
+            <Input
+              id="photo"
+              type="file"
+              accept="image/*"
+              className="mt-1"
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (!file) return;
+                try {
+                  const photo = await compressImage(file, 400, 0.8);
+                  updateArtisan(user.id, { photo });
+                  toast.success("Photo updated.");
+                } catch {
+                  toast.error("Could not read that photo.");
+                }
+              }}
+            />
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="shadow-card">
+        <CardHeader>
+          <CardTitle>My details</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid gap-4 sm:grid-cols-2">
+            {(
+              [
+                ["name", "Your name"],
+                ["email", "Email"],
+                ["mobile", "Mobile number"],
+                ["state", "State"],
+                ["district", "District"],
+                ["village", "Village or town"],
+              ] as const
+            ).map(([key, label]) => (
+              <div key={key} className="space-y-2">
+                <Label>{label}</Label>
+                <Input
+                  value={form[key]}
+                  onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+                  className="h-12 text-base"
+                />
+              </div>
+            ))}
+            <div className="space-y-2">
+              <Label>Craft type</Label>
+              <Select value={form.craftType} onValueChange={(v) => setForm({ ...form, craftType: v })}>
+                <SelectTrigger className="h-12 text-base">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {CRAFT_TYPES.map((c) => (
+                    <SelectItem key={c} value={c}>
+                      {c}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label>Years of experience</Label>
+              <Input
+                type="number"
+                value={form.experience}
+                onChange={(e) => setForm({ ...form, experience: e.target.value })}
+                className="h-12 text-base"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label>Preferred contact</Label>
+              <Select
+                value={form.contactPreference}
+                onValueChange={(v) => setForm({ ...form, contactPreference: v as typeof form.contactPreference })}
+              >
+                <SelectTrigger className="h-12 text-base">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="whatsapp">WhatsApp</SelectItem>
+                  <SelectItem value="call">Phone call</SelectItem>
+                  <SelectItem value="email">Email</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <Label>My craft story</Label>
+            <Textarea
+              value={form.craftStory}
+              rows={4}
+              className="text-base"
+              onChange={(e) => setForm({ ...form, craftStory: e.target.value })}
+            />
+          </div>
+          <Button
+            size="lg"
+            onClick={() => {
+              updateArtisan(user.id, { ...form, experience: Number(form.experience) || 0 });
+              toast.success("Profile saved.");
+            }}
+          >
+            Save my profile
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/settings.tsx
+Lines: 109
+--------------------------------------------------------------------------------
+
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+import { EmptyState } from "@/components/common";
+import { useStore } from "@/lib/store";
+
+export const Route = createFileRoute("/settings")({
+  head: () => ({
+    meta: [
+      { title: "Settings & notifications — ARTISANLINK-AI" },
+      { name: "description", content: "Manage notifications, demo data and your account settings." },
+      { property: "og:title", content: "Settings & notifications — ARTISANLINK-AI" },
+      { property: "og:description", content: "Manage notifications, demo data and your account settings." },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <SettingsPage />
+    </Protected>
+  ),
+});
+
+function SettingsPage() {
+  const { notifications, markAllRead, demoMode, setDemoMode, resetDemoData, logout } = useStore();
+  const navigate = useNavigate();
+
+  return (
+    <div className="mx-auto max-w-3xl">
+      <PageHeader title="Settings" subtitle="Notifications, demo data and your account." />
+
+      <Card className="mb-6 shadow-card">
+        <CardHeader className="flex-row items-center justify-between">
+          <CardTitle>Notifications</CardTitle>
+          <Button variant="ghost" size="sm" onClick={markAllRead}>
+            Mark all read
+          </Button>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {notifications.length === 0 ? (
+            <EmptyState emoji="🔔" title="Nothing new" body="Updates about buyers and orders appear here." />
+          ) : (
+            notifications.map((n) => (
+              <div key={n.id} className="rounded-2xl border border-border p-4">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-semibold">{n.title}</p>
+                  {!n.read && <Badge>New</Badge>}
+                </div>
+                <p className="mt-1 text-sm text-muted-foreground">{n.body}</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {new Date(n.createdAt).toLocaleString("en-IN")}
+                </p>
+              </div>
+            ))
+          )}
+        </CardContent>
+      </Card>
+
+      <Card className="mb-6 shadow-card">
+        <CardHeader>
+          <CardTitle>Demo mode</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <Label className="text-base">Show sample data</Label>
+              <p className="text-sm text-muted-foreground">
+                Keeps sample products, buyers and requests so the app can be shown without internet.
+              </p>
+            </div>
+            <Switch checked={demoMode} onCheckedChange={setDemoMode} />
+          </div>
+          <Button
+            variant="outline"
+            onClick={() => {
+              resetDemoData();
+              toast.success("Sample data restored.");
+            }}
+          >
+            Reset sample data
+          </Button>
+        </CardContent>
+      </Card>
+
+      <Card className="shadow-card">
+        <CardHeader>
+          <CardTitle>Account</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Button
+            variant="destructive"
+            onClick={() => {
+              logout();
+              navigate({ to: "/" });
+            }}
+          >
+            Log out
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/language.tsx
+Lines: 49
+--------------------------------------------------------------------------------
+
+import { createFileRoute } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+import { AiNote, LanguageSelector } from "@/components/common";
+import { useStore } from "@/lib/store";
+
+export const Route = createFileRoute("/language")({
+  head: () => ({
+    meta: [
+      { title: "Choose your language — ARTISANLINK-AI" },
+      { name: "description", content: "Use ARTISANLINK-AI in English, Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi or Bengali." },
+      { property: "og:title", content: "Choose your language — ARTISANLINK-AI" },
+      { property: "og:description", content: "Use ARTISANLINK-AI in eight Indian languages, with voice support." },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <LanguagePage />
+    </Protected>
+  ),
+});
+
+function LanguagePage() {
+  const { language, setLanguage, user, updateArtisan } = useStore();
+  return (
+    <div className="mx-auto max-w-2xl">
+      <PageHeader title="Language" subtitle="Your descriptions, stories and voice input will use this language." />
+      <Card className="shadow-card">
+        <CardHeader>
+          <CardTitle>Choose your language</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <LanguageSelector
+            value={language}
+            onChange={(l) => {
+              setLanguage(l);
+              if (user) updateArtisan(user.id, { language: l });
+              toast.success("Language saved.");
+            }}
+          />
+          <AiNote>Menus stay in English for now; your product text, voice input and read-aloud use your language.</AiNote>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/help.tsx
+Lines: 89
+--------------------------------------------------------------------------------
+
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+
+export const Route = createFileRoute("/help")({
+  head: () => ({
+    meta: [
+      { title: "Help & guide — ARTISANLINK-AI" },
+      { name: "description", content: "Simple step-by-step help for adding products, pricing and replying to buyers." },
+      { property: "og:title", content: "Help & guide — ARTISANLINK-AI" },
+      { property: "og:description", content: "Simple step-by-step help for adding products, pricing and replying to buyers." },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <HelpPage />
+    </Protected>
+  ),
+});
+
+const STEPS = [
+  { title: "1. Add your craft", body: "Open “Add Product”, take a photo, and say a few words about what you make. Tap “Write my description”." },
+  { title: "2. Check the price", body: "Enter your material cost, making charge and hours. We suggest a fair price range you can change." },
+  { title: "3. Publish it", body: "Tap “Publish product”. It then appears in your catalogue and can be matched with buyers." },
+  { title: "4. Talk to buyers", body: "Open “Find Buyers” to send your product details, and “Buyer Requests” to accept orders." },
+];
+
+const FAQ = [
+  { q: "Do I need good internet?", a: "No. Your products are saved on your phone and the app keeps working. Photos are made smaller automatically." },
+  { q: "Can I use my own language?", a: "Yes. Open “Language” and choose from eight Indian languages. You can also speak instead of typing and listen to text read aloud." },
+  { q: "Will the app invent things about my craft?", a: "No. Descriptions and stories only use the words and details you give. Nothing is added about history or awards." },
+  { q: "Who decides my price?", a: "You do. The app only suggests a fair range based on your own costs and working hours." },
+  { q: "Is it free?", a: "Yes, listing your craft and contacting buyers on ARTISANLINK-AI is free for artisans." },
+];
+
+function HelpPage() {
+  return (
+    <div className="mx-auto max-w-3xl">
+      <PageHeader title="Help & guide" subtitle="Everything explained in simple steps." />
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        {STEPS.map((s) => (
+          <Card key={s.title} className="shadow-card">
+            <CardHeader>
+              <CardTitle className="text-lg">{s.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">{s.body}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      <Card className="mt-6 shadow-card">
+        <CardHeader>
+          <CardTitle>Common questions</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Accordion type="single" collapsible>
+            {FAQ.map((f) => (
+              <AccordionItem key={f.q} value={f.q}>
+                <AccordionTrigger className="text-left text-base">{f.q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">{f.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6 shadow-card">
+        <CardHeader>
+          <CardTitle>Still stuck?</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-wrap gap-3">
+          <Button asChild>
+            <Link to="/products/add">Add a product now</Link>
+          </Button>
+          <Button asChild variant="outline">
+            <a href="mailto:support@artisanlink.example">Email support</a>
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/admin.tsx
+Lines: 138
+--------------------------------------------------------------------------------
+
+import { createFileRoute } from "@tanstack/react-router";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Protected } from "@/components/protected";
+import { PageHeader } from "@/components/layout";
+import { EmptyState, StatCard } from "@/components/common";
+import { useStore } from "@/lib/store";
+
+export const Route = createFileRoute("/admin")({
+  head: () => ({
+    meta: [
+      { title: "Admin — ARTISANLINK-AI" },
+      { name: "description", content: "Admin overview of artisans, products, buyers and requests on the platform." },
+      { property: "og:title", content: "Admin — ARTISANLINK-AI" },
+      { property: "og:description", content: "Admin overview of artisans, products, buyers and requests on the platform." },
+    ],
+  }),
+  component: () => (
+    <Protected>
+      <AdminPage />
+    </Protected>
+  ),
+});
+
+function AdminPage() {
+  const { user, artisans, products, buyers, requests, updateArtisan, updateProduct } = useStore();
+
+  if (user?.role !== "admin") {
+    return <EmptyState emoji="🔒" title="Admin only" body="Log in with the admin demo account to open this page." />;
+  }
+
+  return (
+    <div className="mx-auto max-w-6xl">
+      <PageHeader title="Admin" subtitle="Platform overview and content checks." />
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard icon={<span>🧑‍🎨</span>} label="Artisans" value={artisans.length} />
+        <StatCard icon={<span>🧺</span>} label="Products" value={products.length} hint={`${products.filter((p) => p.published).length} published`} />
+        <StatCard icon={<span>🤝</span>} label="Buyers" value={buyers.length} />
+        <StatCard icon={<span>📨</span>} label="Requests" value={requests.length} />
+      </div>
+
+      <Card className="mt-8 shadow-card">
+        <CardHeader>
+          <CardTitle>Artisans</CardTitle>
+        </CardHeader>
+        <CardContent className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Craft</TableHead>
+                <TableHead>Location</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead />
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {artisans.map((a) => (
+                <TableRow key={a.id}>
+                  <TableCell className="font-medium">{a.name}</TableCell>
+                  <TableCell>{a.craftType}</TableCell>
+                  <TableCell>{[a.village, a.district, a.state].filter(Boolean).join(", ")}</TableCell>
+                  <TableCell>
+                    <Badge variant={a.verified ? "default" : "secondary"}>
+                      {a.verified ? "Verified" : "Not verified"}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => {
+                        updateArtisan(a.id, { verified: !a.verified });
+                        toast.success(a.verified ? "Verification removed." : "Artisan verified.");
+                      }}
+                    >
+                      {a.verified ? "Unverify" : "Verify"}
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+
+      <Card className="mt-6 shadow-card">
+        <CardHeader>
+          <CardTitle>Products</CardTitle>
+        </CardHeader>
+        <CardContent className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Product</TableHead>
+                <TableHead>Artisan</TableHead>
+                <TableHead>Price</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead />
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {products.map((p) => (
+                <TableRow key={p.id}>
+                  <TableCell className="font-medium">{p.name}</TableCell>
+                  <TableCell>{artisans.find((a) => a.id === p.artisanId)?.name ?? "—"}</TableCell>
+                  <TableCell>₹{p.price.toLocaleString("en-IN")}</TableCell>
+                  <TableCell>
+                    <Badge variant={p.published ? "default" : "secondary"}>
+                      {p.published ? "Published" : "Draft"}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => {
+                        updateProduct(p.id, { published: !p.published });
+                        toast.success("Product updated.");
+                      }}
+                    >
+                      {p.published ? "Hide" : "Approve"}
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/api/ai.ts
+Lines: 116
+--------------------------------------------------------------------------------
+
+import { createFileRoute } from "@tanstack/react-router";
+
+/**
+ * AI endpoint. Mirrors the planned service split:
+ *   description_generator | translation | craft_story
+ * Falls back to a clearly-labelled demo generator when no AI key is
+ * configured, so the prototype always works offline / on stage.
+ * Secrets are read server-side only and never sent to the browser.
+ */
+
+type Task = "description" | "story" | "translate";
+
+interface Body {
+  task: Task;
+  language?: string;
+  input: Record<string, string>;
+}
+
+const SYSTEM: Record<Task, string> = {
+  description:
+    "You write honest product listings for Indian handicraft artisans. Never invent facts, certifications, awards or history that were not provided. Preserve the artisan's cultural meaning. Reply ONLY with JSON: {\"title\":string,\"shortDescription\":string,\"description\":string,\"keywords\":string[],\"category\":string}",
+  story:
+    "You write a short, warm craft story (60-90 words) from an artisan's own words. Never invent historical facts, dates or lineage that were not provided. Reply ONLY with JSON: {\"story\":string}",
+  translate:
+    "You translate artisan product text into the requested language, keeping the cultural meaning and simple wording. Reply ONLY with JSON: {\"text\":string}",
+};
+
+export const Route = createFileRoute("/api/ai")({
+  server: {
+    handlers: {
+      POST: async ({ request }) => {
+        let body: Body;
+        try {
+          body = (await request.json()) as Body;
+        } catch {
+          return json({ error: "Invalid request" }, 400);
+        }
+        if (!body?.task || !SYSTEM[body.task]) return json({ error: "Invalid request" }, 400);
+
+        const key = process.env["LOVABLE_API_KEY"];
+        if (!key) return json({ demo: true, ...demo(body) });
+
+        try {
+          const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
+            body: JSON.stringify({
+              model: "google/gemini-3.8-flash",
+              messages: [
+                { role: "system", content: SYSTEM[body.task] },
+                {
+                  role: "user",
+                  content: `Language: ${body.language ?? "en"}\n${JSON.stringify(body.input)}`,
+                },
+              ],
+            }),
+          });
+          if (!res.ok) {
+            if (res.status === 429)
+              return json({ error: "Too many requests. Please wait a moment and try again." }, 429);
+            if (res.status === 402)
+              return json({ error: "AI credits are finished. Using sample text instead.", demo: true, ...demo(body) }, 200);
+            return json({ demo: true, ...demo(body) });
+          }
+          const data = (await res.json()) as {
+            choices?: { message?: { content?: string } }[];
+          };
+          const text = data.choices?.[0]?.message?.content ?? "";
+          const parsed = JSON.parse(text.replace(/```json|```/g, "").trim());
+          return json({ demo: false, ...parsed });
+        } catch {
+          return json({ demo: true, ...demo(body) });
+        }
+      },
+    },
+  },
+});
+
+function json(data: unknown, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+function demo(body: Body) {
+  const i = body.input ?? {};
+  const name = i['name'] || "Handmade craft product";
+  const material = i['material'] || "natural material";
+  const technique = i['technique'] || "traditional handwork";
+  const region = i['region'] || "India";
+  const words = i['notes'] || "";
+
+  if (body.task === "story") {
+    return {
+      story:
+        `${words ? words.trim() + " " : ""}This piece is made in ${region} using ${technique}. ` +
+        `Each item is shaped by hand, so small differences between pieces are natural and show the maker's touch.`,
+    };
+  }
+  if (body.task === "translate") {
+    return { text: i['text'] || "" };
+  }
+  return {
+    title: name,
+    shortDescription: `Handmade ${material.toLowerCase()} ${name.toLowerCase()} made with ${technique.toLowerCase()}.`,
+    description:
+      `Beautiful handmade ${name.toLowerCase()} created using ${technique.toLowerCase()} in ${region}. ` +
+      `Made from ${material.toLowerCase()}, it is durable and suitable for daily use, home decoration and gifting. ` +
+      (words ? `In the artisan's words: "${words.trim()}" ` : "") +
+      `Every piece is made by hand, so small natural variations are part of its character.`,
+    keywords: [name.toLowerCase(), material.toLowerCase(), "handmade", "traditional craft", "made in india"],
+    category: i['category'] || "Home & Storage",
+  };
+}
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+FILE: src/routes/README.md
+Lines: 22
+--------------------------------------------------------------------------------
+
+# Routes
+
+TanStack Start uses **file-based routing**. Every `.tsx` file in this directory
+defines a route. Do **not** create `src/pages/`, `src/routes/_app/index.tsx`, or
+`app/layout.tsx` — those are Next.js / Remix conventions. The only root layout
+is `src/routes/__root.tsx`.
+
+## Conventions
+
+| File | URL |
+| --- | --- |
+| `index.tsx` | `/` |
+| `about.tsx` | `/about` |
+| `users/index.tsx` | `/users` |
+| `users/$id.tsx` | `/users/:id` (dynamic — bare `$`, no curly braces) |
+| `posts/{-$category}.tsx` | `/posts/:category?` (optional segment) |
+| `files/$.tsx` | `/files/*` (splat — read via `_splat` param, never `*`) |
+| `_layout.tsx` | layout route (renders children via `<Outlet />`) |
+| `__root.tsx` | app shell — wraps every page; preserve `<Outlet />` |
+
+`routeTree.gen.ts` is auto-generated. Don't edit it by hand.
+
+
+================================================================================
